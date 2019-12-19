@@ -48,19 +48,15 @@
  */
 package isPalindrome
 
-import "strconv"
-
 // @lc code=start
 func isPalindrome(x int) bool {
-	strInt := strconv.Itoa(x)
-
-	runeArray := []rune(strInt)
-	for i, j := 0, len(runeArray)-1; i < j; i, j = i+1, j-1 {
-		if runeArray[i] != runeArray[j] {
-			return false
-		}
+	originalNumber := x
+	newNumber := 0
+	for x > 0 {
+		newNumber = (newNumber*10 + x%10)
+		x /= 10
 	}
-	return true
+	return originalNumber == newNumber
 }
 
 // @lc code=end
