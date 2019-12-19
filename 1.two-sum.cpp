@@ -10,16 +10,22 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-  vector<int> twoSum(vector<int> &nums, int target) {
+  vector<int> twoSum(vector<int> &nums, int target)
+  {
     unordered_map<int, int> numMap;
 
-    for (int i = 0; i < nums.size(); i++) {
+    for (int i = 0; i < nums.size(); i++)
+    {
       int difference = target - nums[i];
-      if (numMap.find(difference) != numMap.end()) {
+      if (numMap.find(difference) != numMap.end())
+      {
         return vector<int>{numMap[difference], i};
-      } else {
+      }
+      else
+      {
         numMap[nums[i]] = i;
       }
     }
