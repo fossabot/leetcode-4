@@ -49,7 +49,7 @@ type ListNode struct {
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	leading := 0
 	resultNode := ListNode{0, nil}
-	for l1.Next != nil {
+	for l1.Next != nil && l2.Next!=nil {
 		value := l1.Val + l2.Val + leading
 		if value > 10 {
 			leading = 1
