@@ -33,27 +33,35 @@
  * }
  */
 
-package mergeTwoLists
+// package mergeTwoLists
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+// type ListNode struct {
+// 	Val  int
+// 	Next *ListNode
+// }
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	resultNode := ListNode{0, nil}
+	resultNode := &ListNode{}
+	curNode := resultNode
 	for {
-		if l1.Val < l2.Val {
-			resultNode.Next = ListNode{l1.Val,nil}
-			l1 = l1.Next
-		} else {
-			resultNode.Next = ListNode{l2.Val,nil}
-			l2 = l2.Next
-		}
-		if l1==nil || l2==nil {
+		if l1 == nil {
+			curNode.Next = l2
 			break
+		} else if l2 == nil {
+			curNode.Next = l1
+			break
+		} else {
+			if l1.Val <= l2.Val {
+				curNode.Next = l1
+				l1, curNode = l1.Next, curNode.Next
+			} else {
+				curNode.Next = l2
+				l2, curNode = l2.Next, curNode.Next
+			}
 		}
+
 	}
+	return resultNode.Next
 }
 
 // @lc code=end
