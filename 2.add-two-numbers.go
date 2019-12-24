@@ -39,37 +39,42 @@
  * }
  */
 
-package addTwoNumbers
+// package addTwoNumbers
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+// type ListNode struct {
+// 	Val  int
+// 	Next *ListNode
+// }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	resultNode := ListNode{}
+	resultNode := &ListNode{}
 	curNode := resultNode
 	leading := 0
 	value := 0
 	for {
-		if l1 == nil {
-			curNode.Next = l2
-			break
-		} else if l2 == nil {
-			curNode.Next = l1
+		if l2 == nil && l1 != nil {
+			value = l1.Val + leading
+			l1 = l1.Next
+		} else if l1 == nil && l2 != nil {
+			value = l2.Val + leading
+			l2 = l2.Next
+		} else if l1 == nil && l2 == nil {
 			break
 		} else {
 			value = l1.Val + l2.Val + leading
-			if l1.Val <= l2.Val {
-				curNode.Next = l1
-				l1, curNode = l1.Next, curNode.Next
-			} else {
-				curNode.Next = l2
-				l2, curNode = l2.Next, curNode.Next
-			}
+			l1 = l1.Next
+			l2 = l2.Next
 		}
 
+		curNode.Next = &ListNode{value % 10, nil}
+		leading = value / 10
+		curNode = curNode.Next
 	}
+
+	if leading != 0 {
+		curNode.Next = &ListNode{1, nil}
+	}
+
 	return resultNode.Next
 }
 
