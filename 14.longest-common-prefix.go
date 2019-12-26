@@ -45,10 +45,10 @@ import "math"
 
 // @lc code=start
 func longestCommonPrefix(strs []string) string {
+	commonPrefix := ""
 	if len(strs) == 0 {
-		return ""
+		return commonPrefix
 	}
-	commonPrefix := []byte{}
 	minLengthStr := math.MaxInt32
 	for _, str := range strs {
 		if len(str) < minLengthStr {
@@ -59,12 +59,12 @@ func longestCommonPrefix(strs []string) string {
 		currentChar := strs[0][charIndex]
 		for strIndex := 0; strIndex < len(strs); strIndex++ {
 			if currentChar != strs[strIndex][charIndex] {
-				return string(commonPrefix)
+				return commonPrefix
 			}
 		}
-		commonPrefix = append(commonPrefix, currentChar)
+		commonPrefix += string(currentChar)
 	}
-	return string(commonPrefix)
+	return commonPrefix
 }
 
 // @lc code=end
