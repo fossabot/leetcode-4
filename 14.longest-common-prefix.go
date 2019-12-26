@@ -41,9 +41,30 @@
 
 package longestCommonPrefix
 
+import "math"
+
 // @lc code=start
 func longestCommonPrefix(strs []string) string {
-	runeArray
+	if len(strs) == 0 {
+		return ""
+	}
+	commonPrefix := []byte{}
+	minLengthStr := math.MaxInt32
+	for _, str := range strs {
+		if len(str) < minLengthStr {
+			minLengthStr = len(str)
+		}
+	}
+	for charIndex := 0; charIndex < minLengthStr; charIndex++ {
+		currentChar := strs[0][charIndex]
+		for strIndex := 0; strIndex < len(strs); strIndex++ {
+			if currentChar != strs[strIndex][charIndex] {
+				return string(commonPrefix)
+			}
+		}
+		commonPrefix = append(commonPrefix, currentChar)
+	}
+	return string(commonPrefix)
 }
 
 // @lc code=end
