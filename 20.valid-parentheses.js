@@ -102,7 +102,34 @@ var isValid = function (s) {
         return this.count;
     }
 
+    for (var element of s) {
+        switch (element) {
+            case '(':
+                Stack.push(')');
+                break;
 
+            case '{':
+                Stack.push('}');
+                break;
+
+            case '[':
+                Stack.push(']');
+                break;
+
+            case ')':
+            case '}':
+            case ']':
+                var cur = Stack.pop();
+                if (cur != element) {
+                    return false;
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    return true;
 };
 // @lc code=end
-
