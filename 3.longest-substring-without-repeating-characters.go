@@ -60,7 +60,7 @@ func lengthOfLongestSubstring(s string) int {
 	higherHalf := lengthOfLongestSubstring(s[(halfStrLength + 1):])
 	highest := max(lowerHalf, higherHalf)
 
-	subStr := s[halfStrLength-lowerHalf : halfStrLength+higherHalf]
+	subStr := s[halfStrLength-lowerHalf+1 : halfStrLength+higherHalf]
 	var elementSet map[rune]bool
 
 	for _, currentChar := range subStr {
