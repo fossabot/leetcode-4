@@ -68,15 +68,10 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         bracketStack = []
+        bracketMap = {'(': ')', '{': '}', '[': ']'}
         for currentChar in s:
-            if currentChar == '(':
-                bracketStack.append(')')
-
-            elif currentChar == '{':
-                bracketStack.append('}')
-
-            elif currentChar == '[':
-                bracketStack.append(']')
+            if currentChar in bracketMap:
+                bracketStack.append(bracketMap[currentChar])
 
             else:
                 try:
@@ -87,8 +82,5 @@ class Solution:
                 except IndexError:
                     return False
 
-        if bracketStack:
-            return False
-        else:
-            return True
+        return bracketStack == []
         # @lc code=end
