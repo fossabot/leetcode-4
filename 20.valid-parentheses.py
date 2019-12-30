@@ -67,5 +67,28 @@
 
 class Solution:
     def isValid(self, s: str) -> bool:
+        bracketStack = []
+        for currentChar in s:
+            if currentChar == '(':
+                bracketStack.append(')')
 
+            elif currentChar == '{':
+                bracketStack.append('}')
+
+            elif currentChar == '[':
+                bracketStack.append(']')
+
+            else:
+                try:
+                    if currentChar == bracketStack.pop():
+                        continue
+                    else:
+                        return False
+                except IndexError:
+                    return False
+
+        if bracketStack:
+            return False
+        else:
+            return True
         # @lc code=end
