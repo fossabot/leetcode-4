@@ -36,24 +36,18 @@
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # numSum = [[val for val in range(i+1)] for i in range(len(nums))]
-        # maxSum = nums[0]
-        # for index in range(len(nums)):
-        #     for smallIndex in range(index):
-        #         localSum = numSum[index-1][smallIndex]+nums[index]
-        #         if localSum > maxSum:
-        #             maxSum = localSum
-        #         numSum[index][smallIndex] = localSum
-
-        #     if nums[index] > maxSum:
-        #         maxSum = nums[index]
-        #     numSum[index][index] = nums[index]
-        if max(nums) <= 0:
+        numsLen = len(nums)
+        if numsLen == 1:
+            return nums[0]
+        elif max(nums) <= 0:
             return max(nums)
-
-        currentSum = [0]*len(nums)
-        maxSum = 0
-        for i, num in enumerate(nums):
-            currentSum[i] = max(0, currentSum[i-1]+num)
-        return max(currentSum)
+        else:
+            leftMax = self.maxSubArray(nums[:numsLen//2])
+            rightMax = self.maxSubArray(nums[numsLen//2:])
+            if leftMax < 0:
+                return rightMax
+            elif rightMax < 0:
+                return leftMax
+            else:
+                return leftMax+rightMax
 # @lc code=end
