@@ -46,7 +46,7 @@
  * Coud you solve it without converting the integer to a string?
  *
  */
-package isPalindrome
+package leetcode
 
 // @lc code=start
 func isPalindrome(x int) bool {

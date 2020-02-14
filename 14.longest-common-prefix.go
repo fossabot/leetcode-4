@@ -39,7 +39,7 @@
  *
  */
 
-package longestCommonPrefix
+package leetcode
 
 import "math"
 

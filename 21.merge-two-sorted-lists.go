@@ -39,6 +39,7 @@
 // 	Val  int
 // 	Next *ListNode
 // }
+package leetcode
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	resultNode := &ListNode{}

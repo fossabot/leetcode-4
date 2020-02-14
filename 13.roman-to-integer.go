@@ -80,9 +80,9 @@
  *
  */
 
-package romanToInt
-
 // @lc code=start
+
+package leetcode
 
 var lookupTable = map[rune]int{
 	'I': 1,

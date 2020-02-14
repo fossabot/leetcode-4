@@ -44,7 +44,7 @@
  *
  */
 
-package reverse
+package leetcode
 
 import "strconv"
 import "math"

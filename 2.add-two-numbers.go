@@ -46,6 +46,8 @@
 // 	Next *ListNode
 // }
 
+package leetcode
+
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	resultNode := &ListNode{}
 	curNode := resultNode
