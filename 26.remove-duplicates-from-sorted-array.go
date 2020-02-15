@@ -64,7 +64,12 @@ package leetcode
 
 // @lc code=start
 func removeDuplicates(nums []int) int {
+	numSet := make(map[int]bool)
+	for i, count := 0, len(nums); i < count; i++ {
+		if numSet[nums[i]] {
 
+		}
+	}
 }
 
 // @lc code=end
