@@ -1,3 +1,3 @@
-module github.com/rafee/LeetCode
+module github.com/rafee/leetcode
 
 go 1.13

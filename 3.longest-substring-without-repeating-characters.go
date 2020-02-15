@@ -54,27 +54,42 @@ package leetcode
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
-	strLength := len(s)
-	halfStrLength := strLength / 2
-	lowerHalf := lengthOfLongestSubstring(s[:halfStrLength])
-	higherHalf := lengthOfLongestSubstring(s[(halfStrLength + 1):])
-	highest := max(lowerHalf, higherHalf)
+	// strLength := len(s)
+	// halfStrLength := strLength / 2
+	// lowerHalf := lengthOfLongestSubstring(s[:halfStrLength])
+	// higherHalf := lengthOfLongestSubstring(s[(halfStrLength + 1):])
+	// highest := max(lowerHalf, higherHalf)
 
-	subStr := s[halfStrLength-lowerHalf+1 : halfStrLength+higherHalf]
-	var elementSet map[rune]bool
+	// subStr := s[halfStrLength-lowerHalf+1 : halfStrLength+higherHalf]
+	// var elementSet map[rune]bool
 
-	for _, currentChar := range subStr {
-		elementSet[currentChar] = true
+	// for _, currentChar := range subStr {
+	// 	elementSet[currentChar] = true
+	// }
+	// return highest
+	charSet := make(map[rune]int)
+	startingIndex, maxLength := 0, 0
+	for index, char := range s {
+		if charSet[char] >= startingIndex {
+			uniqueLength := (index - startingIndex)
+			if uniqueLength > maxLength {
+				maxLength = uniqueLength
+			}
+			startingIndex = charSet[char] + 1
+		}
+		charSet[char] = index
 	}
-	return highest
+	if (len(s) - startingIndex) > maxLength {
+		maxLength = (len(s) - startingIndex)
+	}
+	return maxLength
 }
 
-func max(val1 int, val2 int) int {
-	if val1 >= val2 {
-		return val1
-	} else {
-		return val2
-	}
-}
+// func max(val1 int, val2 int) int {
+// 	if val1 >= val2 {
+// 		return val1
+// 	}
+// 	return val2
+// }
 
 // @lc code=end
