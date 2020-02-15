@@ -1,8 +1,6 @@
 package leetcode
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestLongestSubstring(t *testing.T) {
 	str := "abc"

@@ -52,8 +52,6 @@
 
 package leetcode
 
-import "fmt"
-
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
 	charSet := make(map[rune]int)
