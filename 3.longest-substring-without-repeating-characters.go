@@ -54,9 +54,10 @@ package leetcode
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
-	charSet := make(map[rune]int)
+	charSet := make(map[byte]int)
 	startingIndex, maxLength := 0, 0
-	for index, char := range s {
+	for index, runeChar := range s {
+		char := byte(runeChar)
 		value, ok := charSet[char]
 		if ok && value >= startingIndex {
 			uniqueLength := (index - startingIndex)
