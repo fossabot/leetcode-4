@@ -71,7 +71,8 @@ package leetcode
 
 // @lc code=start
 func findRedundantConnection(edges [][]int) []int {
-
+	a := []int{1, 2}
+	return a
 }
 
 // @lc code=end
