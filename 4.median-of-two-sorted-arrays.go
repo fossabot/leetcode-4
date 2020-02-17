@@ -50,7 +50,7 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	l2 := len(nums2)
 
 	// If the first array is bigger than second array
-	// then return the median in reversed sequence
+	// then return the median of reversed sequence
 	if l1 > l2 {
 		return findMedianSortedArrays(nums2, nums1)
 	}
@@ -58,25 +58,23 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	for start, end := 0, l1; ; {
 		nums1Med := (start + end) / 2
 		nums2Med := (l2+l1+1)/2 - nums1Med
-		nums1Left, nums1Right, nums2Left, nums2Right := 0, 0, 0, 0
-		if nums1Med == 0 {
-			nums1Left = math.MinInt64
-		} else {
+		// Values are initialized to terminal values. Changed later if they
+		// aren't terminal
+		nums1Left, nums1Right, nums2Left, nums2Right := math.MinInt64,
+			math.MaxInt64, math.MinInt64, math.MaxInt64
+
+		// The variables are set to normal values when the conditions aren't
+		// terminal
+		if nums1Med != 0 {
 			nums1Left = nums1[nums1Med-1]
 		}
-		if nums1Med == l1 {
-			nums1Right = math.MaxInt64
-		} else {
+		if nums1Med != l1 {
 			nums1Right = nums1[nums1Med]
 		}
-		if nums2Med == 0 {
-			nums2Left = math.MinInt64
-		} else {
+		if nums2Med != 0 {
 			nums2Left = nums2[nums2Med-1]
 		}
-		if nums2Med == l2 {
-			nums2Right = math.MaxInt64
-		} else {
+		if nums2Med != l2 {
 			nums2Right = nums2[nums2Med]
 		}
 
