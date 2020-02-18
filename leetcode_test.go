@@ -24,3 +24,13 @@ func TestFindRedundantConnection(t *testing.T) {
 		t.Error("Value not matched. Expected [1,4] Got Result", actualResult2)
 	}
 }
+
+func TestCriticalConnections(t *testing.T) {
+	input1 := [][]int{{0, 1}, {1, 2}, {2, 0}, {1, 3}}
+	expectedResult1 := [][]int{{1, 3}}
+	actualResult1 := criticalConnections(4, input1)
+	if actualResult1[0][0] != expectedResult1[0][0] && actualResult1[0][1] !=
+		expectedResult1[0][1] {
+		t.Error("Value not matched. Expected [1,3] Got Result", actualResult1)
+	}
+}
