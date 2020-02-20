@@ -48,8 +48,16 @@
 
 package leetcode
 
+import "sort"
+
 // @lc code=start
 func criticalConnections(n int, connections [][]int) [][]int {
+	sort.Slice(connections[:], func(i, j int) bool {
+		if connections[i][0] != connections[j][0] {
+			return connections[i][0] < connections[j][0]
+		}
+		return connections[i][1] < connections[j][1]
+	})
 	var criticalConns [][]int
 	disc := make([]int, n)
 	low := make([]int, n)
