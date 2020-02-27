@@ -46,8 +46,10 @@
 
 package leetcode
 
-import "strconv"
-import "math"
+import (
+	"math"
+	"strconv"
+)
 
 // @lc code=start
 func reverse(x int) int {

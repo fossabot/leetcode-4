@@ -55,53 +55,25 @@ func threeSum(nums []int) [][]int {
 		numMap[num] = i
 	}
 
-	solution := make([][]int, 0)
-	for i, num1 := range nums[:len(nums)-1] {
-		twoSumSol := twoSum(nums[i+1:], -num1)
-		solution = append(solution, []int{num1, nums[i+twoSumSol[0]], nums[twoSumSol[1]]})
-		// smallSlice := nums[i+1:]
-		// for j, num2 := range smallSlice {
-		// 	twoSum := num1 + num2
-		// 	checkVal := -twoSum
-		// 	if index, ok := numMap[checkVal]; ok && index > i && index > (j+i+1) {
-		// 		if j > 0 && smallSlice[j] == smallSlice[j-1] {
-		// 			continue
-		// 		}
-		// 		fmt.Println(i, i+j+1, index)
-		// 		fmt.Println(num1, num2, checkVal)
-		// 		solution = append(solution, []int{num1, num2, checkVal})
-		// 	}
-		// }
+	solution := make(map[[3]int]bool, 0)
+	for i := 0; i < len(nums)-2; i++ {
+		for j := i + 1; j < len(nums)-1; j++ {
+			twoSum := nums[i] + nums[j]
+			checkVal := -twoSum
+			if index, ok := numMap[checkVal]; ok && index > i && index > j {
+				solution[[...]int{nums[i], nums[j], checkVal}] = true
+			}
+		}
 	}
-	return solution
-	// sort.Ints(nums)
-	// var solus = make([][]int, 0)
-	// for lo := 0; lo < len(nums)-2; lo++ {
-	// 	mid, hi, target := lo+1, len(nums)-1, -nums[lo]
-	// 	for mid < hi {
-	// 		sum := nums[mid] + nums[hi]
-	// 		switch {
-	// 		case sum < target:
-	// 			mid++
-	// 		case sum > target:
-	// 			hi--
-	// 		default: // find one
-	// 			solus = append(solus, []int{nums[lo], nums[mid], nums[hi]})
-	// 			for mid+1 < hi && nums[mid] == nums[mid+1] { // move next to the right-most same number
-	// 				mid++
-	// 			}
-	// 			for hi-1 > mid && nums[hi] == nums[hi-1] { // move back to the left-most same number
-	// 				hi--
-	// 			}
-	// 			mid++
-	// 			hi--
-	// 		}
-	// 	}
-	// 	for lo+1 < len(nums) && nums[lo] == nums[lo+1] { // move next to the right-most same number
-	// 		lo++
-	// 	}
-	// }
-	// return solus
+
+	sol := make([][]int, 0)
+	for array := range solution {
+		// Golang copies array to slice as address. This assignement is only for
+		// creating new address
+		arr := array
+		sol = append(sol, arr[:])
+	}
+	return sol
 }
 
 // @lc code=end
