@@ -71,21 +71,26 @@ func TestTwoSum(t *testing.T) {
 		{[]int{}, []int{}},
 		{[]int{0}, []int{}},
 		{[]int{2, 7, 11, 15}, []int{0, 1}},
-		// {[]int{-1, 0, 1, 2, -1, -4}, [][]int{{-1, -1, 2}, {-1, 0, 1}}},
-		// {[]int{0, 0, 0}, [][]int{{0, 0, 0}}},
-		// {[]int{0, 0, 0, 0}, [][]int{{0, 0, 0}}},
-		// {[]int{1, 2, -2, -1}, [][]int{}},
-		// {[]int{-2, 0, 1, 1, 2}, [][]int{{-2, 0, 2}, {-2, 1, 1}}},
-		// {[]int{-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 4, 6, 6}, [][]int{
-		// 	{-4, -2, 6}, {-4, 0, 4}, {-4, 1, 3}, {-4, 2, 2}, {-2, -2, 4}, {-2, 0, 2},
-		// }},
 	}
 
 	for _, test := range tests {
-		// test := tests[2]
-		// {
 		if got := twoSum(test.input, 9); !reflect.DeepEqual(got, test.want) {
 			t.Errorf("twoSum(%v) = %v, want %v\n", test.input, got, test.want)
+		}
+	}
+}
+
+func TestLongestPalindrome(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{"abccccdd", 7},
+	}
+
+	for _, test := range tests {
+		if result := longestPalindrome(test.input); result != test.expected {
+			t.Errorf("longestPalindrome(%v) = %v, expected %v\n", test.input, result, test.expected)
 		}
 	}
 }
