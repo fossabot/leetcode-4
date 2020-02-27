@@ -49,14 +49,14 @@
 package leetcode
 
 // @lc code=start
-func criticalConnections(n int, connections [][]int) [][]int {
-	var criticalConns [][]int
-	disc := make([]int, n)
-	low := make([]int, n)
-	for _, connection := range connections {
+// func criticalConnections(n int, connections [][]int) [][]int {
+// 	var criticalConns [][]int
+// 	disc := make([]int, n)
+// 	low := make([]int, n)
+// 	for _, connection := range connections {
 
-	}
-	return criticalConns
-}
+// 	}
+// 	return criticalConns
+// }
 
 // @lc code=end

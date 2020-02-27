@@ -30,23 +30,21 @@
  *
  */
 
-// @lc code=start
-/**
+package leetcode
+
+/*
  * Definition for singly-linked list.
  * type ListNode struct {
  *     Val int
  *     Next *ListNode
  * }
  */
-
-// package addTwoNumbers
-
-package leetcode
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
+
+// @lc code=start
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	resultNode := &ListNode{}
