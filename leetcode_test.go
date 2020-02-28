@@ -97,3 +97,47 @@ func TestLongestPalindrome(t *testing.T) {
 		}
 	}
 }
+
+func TestIsValid(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{"()", true},
+		{"()[]{}", true},
+		{"(]", false},
+		{"([)]", false},
+		{"{[]}", true},
+		{"[", false},
+	}
+
+	for _, test := range tests {
+		if result := isValid(test.input); result != test.expected {
+			t.Errorf("isValid(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestMyAtoi(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{"42", 42},
+		{"   -42", -42},
+		{"4193 with words", 4193},
+		{"words and 987", 0},
+		{"-91283472332", -2147483648},
+		{"+1", 1},
+		{"+-1", 0},
+		{"+", 0},
+		{"9223372036854775808", 2147483647},
+		{"18446744073709551617", 2147483647},
+	}
+
+	for _, test := range tests {
+		if result := myAtoi(test.input); result != test.expected {
+			t.Errorf("myAtoi(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}

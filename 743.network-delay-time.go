@@ -49,21 +49,21 @@
 package leetcode
 
 // @lc code=start
-func networkDelayTime(times [][]int, N int, K int) int {
-	graph := make([][][]int, N)
-	for _, edge := range times {
-		// Changing index from 1 to N -> 0 to N-1
-		edge := []int{edge[0] - 1, edge[1] - 1, edge[2]}
-		graph[edge[0]] = append(graph[edge[0]], edge[1:])
-	}
-	visited := make(map[int]bool)
-	visitTime := make([]int, N)
-	for vertex, edges := range graph {
-		for _, edge := range edges {
-			curVisTime
-		}
-	}
-	// return 0
-}
+// func networkDelayTime(times [][]int, N int, K int) int {
+// 	graph := make([][][]int, N)
+// 	for _, edge := range times {
+// 		// Changing index from 1 to N -> 0 to N-1
+// 		edge := []int{edge[0] - 1, edge[1] - 1, edge[2]}
+// 		graph[edge[0]] = append(graph[edge[0]], edge[1:])
+// 	}
+// 	visited := make(map[int]bool)
+// 	visitTime := make([]int, N)
+// 	for vertex, edges := range graph {
+// 		for _, edge := range edges {
+// 			curVisTime
+// 		}
+// 	}
+// 	// return 0
+// }
 
 // @lc code=end
