@@ -114,7 +114,6 @@ func (this *Stack) Push(value interface{}) {
 }
 
 func isValid(s string) bool {
-	status := true
 	data := stackNew()
 	for _, char := range s {
 		switch char {
@@ -139,10 +138,10 @@ func isValid(s string) bool {
 			}
 		}
 	}
-	if data.Len()!=0{
+	if data.Len() != 0 {
 		return false
 	}
-	return status
+	return true
 }
 
 // @lc code=end

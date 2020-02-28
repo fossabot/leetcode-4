@@ -2,7 +2,6 @@ package leetcode
 
 import (
 	"reflect"
-	"strings"
 	"testing"
 )
 
@@ -92,7 +91,7 @@ func TestLongestPalindrome(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		if result := longestPalindrome(test.input); strings.Compare(result, test.expected) != 0 {
+		if result := longestPalindrome(test.input); result != test.expected {
 			t.Errorf("longestPalindrome(%v) = %v, expected %v\n", test.input, result, test.expected)
 		}
 	}
@@ -138,6 +137,45 @@ func TestMyAtoi(t *testing.T) {
 	for _, test := range tests {
 		if result := myAtoi(test.input); result != test.expected {
 			t.Errorf("myAtoi(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestStrStr(t *testing.T) {
+	tests := []struct {
+		haystack string
+		needle   string
+		expected int
+	}{
+		{"hello", "ll", 2},
+		{"aaaaa", "bba", -1},
+		{"", "bb", -1},
+		{"bb", "", 0},
+		{"mississippi", "issip", 4},
+	}
+
+	for _, test := range tests {
+		if result := strStr(test.haystack, test.needle); test.expected != result {
+			t.Errorf("strStr(%v, %v) = %v, expected %v\n", test.haystack, test.needle, result, test.expected)
+		}
+	}
+}
+
+func TestCountAndSay(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected string
+	}{
+		{1, "1"},
+		{2, "11"},
+		{3, "21"},
+		{4, "1211"},
+		{5, "111221"},
+	}
+
+	for _, test := range tests {
+		if result := countAndSay(test.input); test.expected != result {
+			t.Errorf("countAndSay(%v) = %v, expected %v\n", test.input, result, test.expected)
 		}
 	}
 }
