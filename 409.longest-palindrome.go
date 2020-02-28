@@ -40,7 +40,7 @@
 package leetcode
 
 // @lc code=start
-func longestPalindrome(s string) int {
+func longestPalindromeLength(s string) int {
 	// charArray := rune(s)
 	charMap := make(map[rune]int)
 	for _, ch := range s {

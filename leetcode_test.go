@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -83,13 +84,15 @@ func TestTwoSum(t *testing.T) {
 func TestLongestPalindrome(t *testing.T) {
 	tests := []struct {
 		input    string
-		expected int
+		expected string
 	}{
-		{"abccccdd", 7},
+		{"tababad", "ababa"},
+		{"abbapa", "abba"},
+		{"cbbd", "bb"},
 	}
 
 	for _, test := range tests {
-		if result := longestPalindrome(test.input); result != test.expected {
+		if result := longestPalindrome(test.input); strings.Compare(result, test.expected) != 0 {
 			t.Errorf("longestPalindrome(%v) = %v, expected %v\n", test.input, result, test.expected)
 		}
 	}
