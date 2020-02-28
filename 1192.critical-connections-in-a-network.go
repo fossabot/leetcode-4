@@ -48,6 +48,8 @@
 
 package leetcode
 
+import "sort"
+
 // @lc code=start
 // func criticalConnections(n int, connections [][]int) [][]int {
 // 	var criticalConns [][]int
