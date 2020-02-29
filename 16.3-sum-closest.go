@@ -39,22 +39,23 @@ func threeSumClosest(nums []int, target int) int {
 	sort.Ints(nums)
 	result, diff := 0, math.MaxInt64
 	for i := 0; i < len(nums)-2; i++ {
-		for j := i + 1; j < len(nums)-1; j++ {
-			for k := j + 1; k < len(nums); k++ {
-				val := nums[i] + nums[j] + nums[k]
-				if val > target {
-					if (val - target) < diff {
-						diff = val - target
-						result = val
-					} else {
-						break
-					}
-				} else {
-					if (target - val) < diff {
-						diff = target - val
-						result = val
-					}
+		for j, k := i+1, len(nums)-1; j < k; {
+			val := nums[i] + nums[j] + nums[k]
+			if val == target {
+				return val
+			}
+			if val > target {
+				if (val - target) < diff {
+					diff = val - target
+					result = val
 				}
+				k--
+			} else {
+				if (target - val) < diff {
+					diff = target - val
+					result = val
+				}
+				j++
 			}
 		}
 	}
