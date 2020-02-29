@@ -179,3 +179,36 @@ func TestCountAndSay(t *testing.T) {
 		}
 	}
 }
+
+func TestMaxArea(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		// {[]int{}, 0},
+		{[]int{1, 1}, 1},
+		{[]int{1, 8, 6, 2, 5, 4, 8, 3, 7}, 49},
+		{[]int{2, 3, 4, 5, 18, 17, 6}, 17},
+	}
+
+	for _, test := range tests {
+		if result := maxArea(test.input); test.expected != result {
+			t.Errorf("maxArea(%v) = %v, want %v\n", test.input, result, test.expected)
+		}
+	}
+}
+func TestThreeSumClosest(t *testing.T) {
+	tests := []struct {
+		input       []int
+		inputTarget int
+		expected    int
+	}{
+		{[]int{-1, 2, 1, -4}, 1, 2},
+	}
+
+	for _, test := range tests {
+		if result := threeSumClosest(test.input, test.inputTarget); test.expected != result {
+			t.Errorf("threeSumCLosest(%v, %v) = %v, want %v\n", test.input, test.inputTarget, result, test.expected)
+		}
+	}
+}

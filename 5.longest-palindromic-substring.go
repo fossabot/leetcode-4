@@ -37,13 +37,6 @@ package leetcode
 
 // @lc code=start
 
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
-
 func getInnerPalndromeLength(s string, left, right int) int {
 	for ; left >= 0 && right < len(s); left, right = left-1, right+1 {
 		if s[left] != s[right] {

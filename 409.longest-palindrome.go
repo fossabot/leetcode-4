@@ -51,7 +51,6 @@ func longestPalindromeLength(s string) int {
 	odd := false
 	for _, count := range charMap {
 		if count%2 == 1 {
-			odd = odd
 			odd = true
 		}
 		result += ((count / 2) * 2)
