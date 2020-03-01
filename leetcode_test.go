@@ -219,10 +219,10 @@ func TestFindSubtring(t *testing.T) {
 		inWords  []string
 		expected []int
 	}{
-		// {"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
-		// {"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int{}},
-		// {"", []string{"word"}, []int{}},
-		// {"word", []string{""}, []int{}},
+		{"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
+		{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int{}},
+		{"", []string{"word"}, []int{}},
+		{"word", []string{""}, []int{}},
 		{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "good"}, []int{8}},
 	}
 
