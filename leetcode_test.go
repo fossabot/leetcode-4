@@ -212,3 +212,23 @@ func TestThreeSumClosest(t *testing.T) {
 		}
 	}
 }
+
+func TestFindSubtring(t *testing.T) {
+	tests := []struct {
+		inString string
+		inWords  []string
+		expected []int
+	}{
+		// {"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
+		// {"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int{}},
+		// {"", []string{"word"}, []int{}},
+		// {"word", []string{""}, []int{}},
+		{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "good"}, []int{8}},
+	}
+
+	for _, test := range tests {
+		if result := findSubstring(test.inString, test.inWords); !reflect.DeepEqual(test.expected, result) {
+			t.Errorf("findSubstring(%v, %v) = %v, expected %v\n", test.inString, test.inWords, result, test.expected)
+		}
+	}
+}
