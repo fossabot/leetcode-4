@@ -222,7 +222,7 @@ func TestFindSubtring(t *testing.T) {
 		{"barfoothefoobarman", []string{"foo", "bar"}, []int{0, 9}},
 		{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}, []int{}},
 		{"", []string{"word"}, []int{}},
-		{"word", []string{""}, []int{}},
+		{"word", []string{}, []int{}},
 		{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "good"}, []int{8}},
 	}
 
@@ -232,3 +232,19 @@ func TestFindSubtring(t *testing.T) {
 		}
 	}
 }
+
+// func TestRemoveNthFromEnd(t *testing.T) {
+// 	tests := []struct {
+// 		head     *ListNode
+// 		target   int
+// 		expected *ListNode
+// 	}{
+// 		{[]int{-1, 2, 1, -4}, 1, 2},
+// 	}
+
+// 	for _, test := range tests {
+// 		if result := threeSumClosest(test.input, test.inputTarget); test.expected != result {
+// 			t.Errorf("threeSumCLosest(%v, %v) = %v, want %v\n", test.input, test.inputTarget, result, test.expected)
+// 		}
+// 	}
+// }

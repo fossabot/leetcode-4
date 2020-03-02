@@ -45,6 +45,8 @@
 
 package leetcode
 
+import "reflect"
+
 // @lc code=start
 func findSubstring(s string, words []string) []int {
 	lenWords, lenStr := len(words), len(s)
@@ -52,30 +54,24 @@ func findSubstring(s string, words []string) []int {
 		return []int{}
 	}
 	lenWord := len(words[0])
-	if lenWord == 0 {
-		return []int{}
+	wordMap := make(map[string]int)
+	for _, word := range words {
+		wordMap[word]++
 	}
 	solution := make([]int, 0)
-	for i := 0; i < lenStr; i++ {
-		wordMap := make(map[string]int)
-		for _, word := range words {
-			wordMap[word]++
-		}
+	for i := 0; i <= lenStr-(lenWord*lenWords); i++ {
+		curWordMap := make(map[string]int)
 		k := 0
 		for j := i; j <= (lenStr-lenWord) && k < lenWords; k++ {
 			curWord := s[j : j+lenWord]
-			if count, ok := wordMap[curWord]; ok {
-				if count == 1 {
-					delete(wordMap, curWord)
-				} else {
-					wordMap[curWord]--
-				}
+			if _, ok := wordMap[curWord]; ok {
+				curWordMap[curWord]++
 				j = j + lenWord
 			} else {
 				break
 			}
 		}
-		if k == lenWords {
+		if k == lenWords && reflect.DeepEqual(curWordMap, wordMap) {
 			solution = append(solution, i)
 		}
 	}
