@@ -289,7 +289,7 @@ func TestLRU(t *testing.T) {
 		t.Errorf("Wrong Output. Expected 2, got %v", val)
 	}
 	cache.Put(1, 1)
-	cache.Put(4, 1)     // evicts key 1
+	cache.Put(4, 1)    // evicts key 1
 	val = cache.Get(2) // returns 1
 	if val != -1 {
 		t.Errorf("Wrong Output. Expected -1, got %v", val)
@@ -311,6 +311,22 @@ func TestFindSubtring(t *testing.T) {
 	for _, test := range tests {
 		if result := findSubstring(test.inString, test.inWords); !reflect.DeepEqual(test.expected, result) {
 			t.Errorf("findSubstring(%v, %v) = %v, expected %v\n", test.inString, test.inWords, result, test.expected)
+		}
+	}
+}
+
+func TestRotate(t *testing.T) {
+	tests := []struct {
+		input    [][]int
+		expected [][]int
+	}{
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, [][]int{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}}},
+		{[][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}}, [][]int{{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}}},
+	}
+
+	for _, test := range tests {
+		if rotate(test.input); !reflect.DeepEqual(test.input, test.expected) {
+			t.Errorf("Result = %v, want %v\n", test.input, test.expected)
 		}
 	}
 }
