@@ -366,3 +366,21 @@ func TestGetRow(t *testing.T) {
 		}
 	}
 }
+
+func TestMultiply(t *testing.T) {
+	tests := []struct {
+		num1     string
+		num2     string
+		expected string
+	}{
+		{"0", "3", "0"},
+		{"2", "3", "6"},
+		{"123", "456", "56088"},
+	}
+
+	for _, test := range tests {
+		if result := multiply(test.num1, test.num2); test.expected != result {
+			t.Errorf("multiply(%v, %v) = %v, expected %v\n", test.num1, test.num2, result, test.expected)
+		}
+	}
+}
