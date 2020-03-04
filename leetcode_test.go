@@ -330,3 +330,39 @@ func TestRotate(t *testing.T) {
 		}
 	}
 }
+
+func TestMinWindow(t *testing.T) {
+	tests := []struct {
+		s        string
+		t        string
+		expected string
+	}{
+		{"ADOBECODEBANC", "ABC", "BANC"},
+		// {"ADOBECODEBANC", "ABCP", ""},
+	}
+
+	for _, test := range tests {
+		if result := minWindow(test.s, test.t); test.expected != result {
+			t.Errorf("minWindow(%v, %v) = %v, expected %v\n", test.s, test.t, result, test.expected)
+		}
+	}
+}
+
+func TestGetRow(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected []int
+	}{
+		{3, []int{1, 3, 3, 2}},
+		// {2, "11"},
+		// {3, "21"},
+		// {4, "1211"},
+		// {5, "111221"},
+	}
+
+	for _, test := range tests {
+		if result := getRow(test.input); !reflect.DeepEqual(test.expected, result) {
+			t.Errorf("getRow(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}

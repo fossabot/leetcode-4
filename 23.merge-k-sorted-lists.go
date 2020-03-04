@@ -41,10 +41,10 @@ package leetcode
  * }
  */
 
-type Item struct {
-	node  *ListNode
-	index int // The index of the item in the heap.
-}
+// type Item struct {
+// 	node  *ListNode
+// 	index int // The index of the item in the heap.
+// }
 
 // type Heap []*Item
 
