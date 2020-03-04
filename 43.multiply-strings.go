@@ -54,12 +54,11 @@ func multiply(num1 string, num2 string) string {
 	for i := l1 - 1; i >= 0; i-- {
 		for j := l2 - 1; j >= 0; j-- {
 			val := (num1[i] - '0') * (num2[j] - '0')
-			val += (res[i+j+1])
-			if val >= 10 {
-				res[i+j] += (val / 10)
-				val %= 10
+			res[i+j+1] += val
+			if res[i+j+1] >= 10 {
+				res[i+j] += (res[i+j+1] / 10)
+				res[i+j+1] %= 10
 			}
-			res[i+j+1] = val
 		}
 	}
 	if res[0] == 0 {
