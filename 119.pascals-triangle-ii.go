@@ -54,7 +54,7 @@ func getRow(rowIndex int) []int {
 		}
 		result = append(result, temp)
 	}
-	// return result[rowIndex]
+	return result[rowIndex]
 	// result := []int{1}
 	// for i := 0; i < rowIndex; i++ {
 	// 	result = append(result, 1)
