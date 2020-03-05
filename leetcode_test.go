@@ -384,3 +384,23 @@ func TestMultiply(t *testing.T) {
 		}
 	}
 }
+
+func TestLongestValidParentheses(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{")", 0},
+		{"()", 2},
+		{"(()", 2},
+		{")()())", 4},
+		{"()(()", 2},
+		// {"(()(((()", 2},
+	}
+
+	for _, test := range tests {
+		if result := longestValidParentheses(test.input); result != test.expected {
+			t.Errorf("longestValidParentheses %v = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
