@@ -404,3 +404,20 @@ func TestLongestValidParentheses(t *testing.T) {
 		}
 	}
 }
+
+func TestLongestPalindromeLength(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{"abccccdd", 7},
+		// {"abbapa", "abba"},
+		// {"cbbd", "bb"},
+	}
+
+	for _, test := range tests {
+		if result := longestPalindromeLength(test.input); result != test.expected {
+			t.Errorf("longestPalindromeLength(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}

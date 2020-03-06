@@ -50,6 +50,7 @@
 package leetcode
 
 // @lc code=start
+
 type LRUCache struct {
 	capacity    int
 	elements    map[int]int
