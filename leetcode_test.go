@@ -421,3 +421,19 @@ func TestLongestPalindromeLength(t *testing.T) {
 		}
 	}
 }
+
+func TestSubsets(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected [][]int
+	}{
+		{[]int{}, [][]int{{}}},
+		{[]int{1, 2, 3}, [][]int{{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}}},
+	}
+
+	for _, test := range tests {
+		if result := subsets(test.input); !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("\nsubsets(%v) = %v, \n\t\texpected %v\n", test.input, result, test.expected)
+		}
+	}
+}

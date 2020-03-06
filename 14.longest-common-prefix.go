@@ -49,7 +49,7 @@ func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {
 		return commonPrefix
 	}
-	minLengthStr := math.MaxInt32
+	minLengthStr := math.MaxInt64
 	for _, str := range strs {
 		if len(str) < minLengthStr {
 			minLengthStr = len(str)

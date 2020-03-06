@@ -31,19 +31,21 @@
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  *
  */
+
 package leetcode
 
 // @lc code=start
 
-/*
-TreeNode
+/**
  * Definition for a binary tree node.
  * type TreeNode struct {
  *     Val int
  *     Left *TreeNode
  *     Right *TreeNode
  * }
-*/
+ */
+
+// TreeNode is a data structure for BST
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode

@@ -39,7 +39,9 @@ package leetcode
  *     Next *ListNode
  * }
  */
-type ListNode struct {
+
+ // ListNode is a data structure for Linked-List Data type
+ type ListNode struct {
 	Val  int
 	Next *ListNode
 }

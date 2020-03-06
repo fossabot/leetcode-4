@@ -51,6 +51,7 @@ package leetcode
 
 // @lc code=start
 
+// LRUCache is a data structure for Problem 145
 type LRUCache struct {
 	capacity    int
 	elements    map[int]int
@@ -59,6 +60,7 @@ type LRUCache struct {
 	numElements int
 }
 
+// Constructor creates an object of type LRUCache
 func Constructor(capacity int) LRUCache {
 	l := new(LRUCache)
 	l.capacity = capacity
@@ -68,38 +70,40 @@ func Constructor(capacity int) LRUCache {
 	return *l
 }
 
-func (this *LRUCache) Get(key int) int {
-	if val, ok := this.elements[key]; ok {
-		this.queue = append(this.queue, key)
-		this.queueExtra[key]++
+// Get gets an object by key
+func (object *LRUCache) Get(key int) int {
+	if val, ok := object.elements[key]; ok {
+		object.queue = append(object.queue, key)
+		object.queueExtra[key]++
 		return val
 	}
 	return -1
 }
 
-func (this *LRUCache) Put(key int, value int) {
-	_, ok := this.elements[key]
+// Put creates an object with provided key and value
+func (object *LRUCache) Put(key int, value int) {
+	_, ok := object.elements[key]
 	if ok {
-		this.elements[key] = value
-		this.queue = append(this.queue, key)
-		this.queueExtra[key]++
+		object.elements[key] = value
+		object.queue = append(object.queue, key)
+		object.queueExtra[key]++
 		return
 	}
-	this.elements[key] = value
-	this.queue = append(this.queue, key)
-	if this.numElements == this.capacity {
-		for i, key := range this.queue {
-			if val, ok := this.queueExtra[key]; ok && val != 0 {
-				this.queueExtra[key]--
+	object.elements[key] = value
+	object.queue = append(object.queue, key)
+	if object.numElements == object.capacity {
+		for i, key := range object.queue {
+			if val, ok := object.queueExtra[key]; ok && val != 0 {
+				object.queueExtra[key]--
 			} else {
-				delete(this.elements, key)
-				delete(this.queueExtra, key)
-				this.queue = this.queue[i+1:]
+				delete(object.elements, key)
+				delete(object.queueExtra, key)
+				object.queue = object.queue[i+1:]
 				break
 			}
 		}
 	} else {
-		this.numElements++
+		object.numElements++
 	}
 }
 
