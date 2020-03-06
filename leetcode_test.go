@@ -437,3 +437,30 @@ func TestSubsets(t *testing.T) {
 		}
 	}
 }
+
+func TestNumIslands(t *testing.T) {
+	tests := []struct {
+		input    [][]byte
+		expected int
+	}{
+		{[][]byte{}, 0},
+		{[][]byte{
+			{'1', '1', '1', '1', '0'},
+			{'1', '1', '0', '1', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '0', '0', '0'},
+		}, 1},
+		{[][]byte{
+			{'1', '1', '0', '0', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '1', '0', '0'},
+			{'0', '0', '0', '1', '1'},
+		}, 3},
+	}
+
+	for _, test := range tests {
+		if result := numIslands(test.input); result != test.expected {
+			t.Errorf("numIslands(%v) = %v, expected %v", test.input, result, test.expected)
+		}
+	}
+}

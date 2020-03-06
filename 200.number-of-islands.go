@@ -47,7 +47,34 @@ package leetcode
 
 // @lc code=start
 func numIslands(grid [][]byte) int {
-	return 0
+	if len(grid) == 0 {
+		return 0
+	}
+	nRow, nCol := len(grid), len(grid[0])
+	count := 1
+	for i := 0; i < nRow; i++ {
+		for j := 0; j < nCol; j++ {
+			if grid[i][j] == '1' {
+				count++
+				fill(grid, i, j, nRow, nCol, count)
+			}
+		}
+	}
+	return count - 1
+}
+
+func fill(grid [][]byte, x, y, X, Y, val int) {
+	if x < 0 || y < 0 || x == X || y == Y {
+		return
+	}
+	if grid[x][y] == '0' || grid[x][y] > '1' {
+		return
+	}
+	grid[x][y] = byte(val) + '0'
+	fill(grid, x-1, y, X, Y, val)
+	fill(grid, x, y-1, X, Y, val)
+	fill(grid, x+1, y, X, Y, val)
+	fill(grid, x, y+1, X, Y, val)
 }
 
 // @lc code=end
