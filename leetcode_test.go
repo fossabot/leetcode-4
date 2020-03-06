@@ -464,3 +464,19 @@ func TestNumIslands(t *testing.T) {
 		}
 	}
 }
+
+func TestMergeKLists(t *testing.T) {
+	tests := []struct {
+		input    []*ListNode
+		expected *ListNode
+	}{
+		{[]*ListNode{nil}, nil},
+		{[]*ListNode{newList([]int{1, 4, 5}), newList([]int{1, 3, 4}), newList([]int{2, 6})}, newList([]int{1, 1, 2, 3, 4, 4, 5, 6})},
+	}
+
+	for _, test := range tests {
+		if result := mergeKLists(test.input); !equal(result, test.expected) {
+			t.Errorf("mergeKLists result\n%v\nexpected\n%v", print(result), print(test.expected))
+		}
+	}
+}

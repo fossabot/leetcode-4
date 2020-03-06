@@ -41,10 +41,23 @@ package leetcode
  * }
  */
 
-// type Item struct {
-// 	node  *ListNode
-// 	index int // The index of the item in the heap.
-// }
+func mergeKLists(lists []*ListNode) *ListNode {
+	solution := &ListNode{}
+	// curNode := solution
+	// heapNodes := lists
+	// heap.Init(heapNodes)
+	// for {
+	// 	Node := heap.Pop(heapNodes)
+	// 	curNode.Next = Node
+	// 	curNode = curNode.Next
+	// 	heap.Push(heapNodes, Node.Next)
+	// 	if heapNodes.Len() == 0 {
+	// 		curNode.Next = nil
+	// 		break
+	// 	}
+	// }
+	return solution.Next
+}
 
 // type Heap []*Item
 
@@ -121,36 +134,4 @@ package leetcode
 // func (h *Heap) Update(item *Item) {
 // 	h.Fix(item.index)
 // }
-
-// func mergeKLists(lists []*ListNode) *ListNode {
-// 	solution := &ListNode{}
-// 	curNode := solution
-// 	heapNodes := lists
-// 	heap.Init(heapNodes)
-// 	for {
-// 		Node := heap.Pop(heapNodes)
-// 		curNode.Next = Node
-// 		curNode = curNode.Next
-// 		heap.Push(heapNodes, Node.Next)
-// 		if heapNodes.Len() == 0 {
-// 			curNode.Next = nil
-// 			break
-// 		}
-// 	}
-// 	return solution.Next
-// }
-
-// func sorted(lists []*ListNode) []*ListNode {
-// 	result := make([]*ListNode, 0)
-// 	for _, Node := range lists {
-// 		if Node != nil {
-// 			result = append(result, Node)
-// 		}
-// 	}
-// 	sort.SliceStable(result, func(i, j int) bool {
-// 		return lists[i].Val < lists[j].Val
-// 	})
-// 	return result
-// }
-
 // @lc code=end
