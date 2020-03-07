@@ -26,26 +26,38 @@ package leetcode
 
 // @lc code=start
 func lexicalOrder(n int) []int {
-	sol := []int{}
-	var limit int
-	if n < 9 {
-		limit = n
-	} else {
-		limit = 9
-	}
-	for i := 1; i <= limit; i++ {
-		sol = append(sol, i)
-		nextStart := (i * 10)
-		nextStop := (nextStart + 10)
-		for nextStart <= n {
-			for j := nextStart; j < nextStop && j <= n; j++ {
-				sol = append(sol, j)
+	sol := make([]int, 0)
+	st := intStack{}
+	st = st.Push(1)
+	for st.Len() != 0 {
+		var x int
+		st, x = st.Pop()
+		sol = append(sol, x)
+		if x*10 <= n {
+			st = st.Push(x * 10)
+		} else {
+			for limit := x + 10; x < n && x < limit; {
+				x++
+				sol = append(sol, x)
 			}
-			nextStart *= 10
-			nextStop = (nextStart * 2)
 		}
 	}
 	return sol
+}
+
+type intStack []int
+
+func (s intStack) Push(v int) intStack {
+	return append(s, v)
+}
+
+func (s intStack) Pop() (intStack, int) {
+	l := len(s)
+	return s[:l-1], s[l-1]
+}
+
+func (s intStack) Len() int {
+	return len(s)
 }
 
 // @lc code=end

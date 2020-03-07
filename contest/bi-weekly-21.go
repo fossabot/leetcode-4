@@ -4,15 +4,15 @@ import "sort"
 
 func sortString(s string) string {
 	b := []byte(s)
+	// Reverse sort the string array from big to small
 	sort.Slice(b, func(i int, j int) bool { return b[i] > b[j] })
 
 	leftStack := stack{}
 	left := 0
 
 	for i := 1; i < len(b); i++ {
-		if b[i] == b[left] {
-			continue
-		} else {
+		if b[i] != b[left] {
+			// Put the byte array with smallest value on top
 			leftStack = leftStack.Push(b[left:i])
 			left = i
 		}
