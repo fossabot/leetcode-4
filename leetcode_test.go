@@ -213,6 +213,7 @@ func TestThreeSumClosest(t *testing.T) {
 	}
 }
 
+func TestLetterCombinations(t *testing.T) {
 func TestFindSubtring(t *testing.T) {
 	tests := []struct {
 		inString string

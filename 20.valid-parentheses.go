@@ -65,6 +65,8 @@
 package leetcode
 
 // @lc code=start
+
+// Stack is a data type for Stack daata structuire
 type (
 	Stack struct {
 		top    *node
@@ -81,36 +83,36 @@ func stackNew() *Stack {
 	return &Stack{nil, 0}
 }
 
-// Return the number of items in the stack
-func (this *Stack) Len() int {
-	return this.length
+// Len returns the number of items in the stack
+func (object *Stack) Len() int {
+	return object.length
 }
 
-// View the top item on the stack
-func (this *Stack) Peek() interface{} {
-	if this.length == 0 {
+// Peek shows the top item on the stack
+func (object *Stack) Peek() interface{} {
+	if object.length == 0 {
 		return nil
 	}
-	return this.top.value
+	return object.top.value
 }
 
 // Pop the top item of the stack and return it
-func (this *Stack) Pop() interface{} {
-	if this.length == 0 {
+func (object *Stack) Pop() interface{} {
+	if object.length == 0 {
 		return nil
 	}
 
-	n := this.top
-	this.top = n.prev
-	this.length--
+	n := object.top
+	object.top = n.prev
+	object.length--
 	return n.value
 }
 
 // Push a value onto the top of the stack
-func (this *Stack) Push(value interface{}) {
-	n := &node{value, this.top}
-	this.top = n
-	this.length++
+func (object *Stack) Push(value interface{}) {
+	n := &node{value, object.top}
+	object.top = n
+	object.length++
 }
 
 func isValid(s string) bool {
