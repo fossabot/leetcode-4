@@ -47,13 +47,9 @@ import (
 
 func mergeKLists(lists []*ListNode) *ListNode {
 	q := PriorityQueue{}
-	for i, list := range lists {
+	for _, list := range lists {
 		if list != nil {
-			it := &Item{
-				content: list,
-				index:   i,
-			}
-			heap.Push(&q, it)
+			heap.Push(&q, list)
 		}
 	}
 
@@ -61,13 +57,10 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	head := solution
 
 	for q.Len() != 0 {
-		it := heap.Pop(&q).(*Item)
-		solution.Next = it.content
-		if it.content.Next != nil {
-			item := &Item{
-				content: it.content.Next,
-			}
-			heap.Push(&q, item)
+		it := heap.Pop(&q).(*ListNode)
+		solution.Next = it
+		if it.Next != nil {
+			heap.Push(&q, it.Next)
 		}
 		solution = solution.Next
 	}
@@ -82,34 +75,29 @@ type Item struct {
 }
 
 // A PriorityQueue implements heap.Interface and holds Items.
-type PriorityQueue []*Item
+type PriorityQueue []*ListNode
 
 func (pq PriorityQueue) Len() int { return len(pq) }
 
 func (pq PriorityQueue) Less(i, j int) bool {
 	// Get the lowest Node from queue
-	return pq[i].content.Val < pq[j].content.Val
+	return pq[i].Val < pq[j].Val
 }
 
 func (pq PriorityQueue) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
 }
 
 func (pq *PriorityQueue) Push(x interface{}) {
-	n := len(*pq)
-	item := x.(*Item)
-	item.index = n
-	*pq = append(*pq, item)
+	node := x.(*ListNode)
+	*pq = append(*pq, node)
 }
 
 func (pq *PriorityQueue) Pop() interface{} {
 	old := *pq
 	n := len(old)
 	item := old[n-1]
-	old[n-1] = nil  // avoid memory leak
-	item.index = -1 // for safety
+	old[n-1] = nil // avoid memory leak
 	*pq = old[0 : n-1]
 	return item
 }
