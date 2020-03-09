@@ -49,12 +49,13 @@ type ListNode struct {
 }
 
 func newList(vals []int) *ListNode {
-	original := &ListNode{}
-	listNode := original
+	listNode := &ListNode{}
+	original := listNode
 	for _, v := range vals {
 		temp := &ListNode{}
 		temp.Val = v
 		listNode.Next = temp
+		listNode = listNode.Next
 	}
 	return original.Next
 }

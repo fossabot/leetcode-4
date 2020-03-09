@@ -32,6 +32,10 @@
 
 package leetcode
 
+import (
+	"container/heap"
+)
+
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -42,96 +46,73 @@ package leetcode
  */
 
 func mergeKLists(lists []*ListNode) *ListNode {
+	q := PriorityQueue{}
+	for i, list := range lists {
+		if list != nil {
+			it := &Item{
+				content: list,
+				index:   i,
+			}
+			heap.Push(&q, it)
+		}
+	}
+	heap.Init(&q)
+
 	solution := &ListNode{}
-	// curNode := solution
-	// heapNodes := lists
-	// heap.Init(heapNodes)
-	// for {
-	// 	Node := heap.Pop(heapNodes)
-	// 	curNode.Next = Node
-	// 	curNode = curNode.Next
-	// 	heap.Push(heapNodes, Node.Next)
-	// 	if heapNodes.Len() == 0 {
-	// 		curNode.Next = nil
-	// 		break
-	// 	}
-	// }
-	return solution.Next
+	head := solution
+
+	for q.Len() != 0 {
+		it := heap.Pop(&q).(*Item)
+		solution.Next = it.content
+		if it.content.Next != nil {
+			item := &Item{
+				content: it.content.Next,
+			}
+			heap.Push(&q, item)
+		}
+		solution = solution.Next
+	}
+	return head.Next
 }
 
-// type Heap []*Item
+// An Item is something we manage in a priority queue.
+type Item struct {
+	content *ListNode // The value of the item; arbitrary.
+	// The index is needed by update and is maintained by the heap.Interface methods.
+	index int // The index of the item in the heap.
+}
 
-// func (h Heap) Len() int {
-// 	return len(h)
-// }
+// A PriorityQueue implements heap.Interface and holds Items.
+type PriorityQueue []*Item
 
-// func (h Heap) Less(i, j int) bool {
-// 	return h[i].node.Val < h[j].node.Val
-// }
+func (pq PriorityQueue) Len() int { return len(pq) }
 
-// func (h Heap) Swap(i, j int) {
-// 	h[i], h[j] = h[j], h[i]
-// 	h[i].index = i
-// 	h[j].index = j
-// }
+func (pq PriorityQueue) Less(i, j int) bool {
+	// Get the lowest Node from queue
+	return pq[i].content.Val < pq[j].content.Val
+}
 
-// func (h *Heap) Up(j int) {
-// 	for {
-// 		i := (j - 1) / 2 // parent
-// 		if i == j || !h.Less(j, i) {
-// 			break
-// 		}
-// 		h.Swap(i, j)
-// 		j = i
-// 	}
-// }
+func (pq PriorityQueue) Swap(i, j int) {
+	pq[i], pq[j] = pq[j], pq[i]
+	pq[i].index = i
+	pq[j].index = j
+}
 
-// func (h *Heap) Down(i int, n int) {
-// 	for {
-// 		j1 := 2*i + 1
-// 		if j1 >= n || j1 < 0 {
-// 			break
-// 		}
-// 		j := j1 // left child
-// 		j2 := j1 + 1
-// 		if j2 < n && !h.Less(j1, j2) {
-// 			j = j2 // = 2*i + 2 // right child
-// 		}
-// 		if !h.Less(j, i) {
-// 			break
-// 		}
-// 		h.Swap(i, j)
-// 		i = j
-// 	}
-// }
+func (pq *PriorityQueue) Push(x interface{}) {
+	n := len(*pq)
+	item := x.(*Item)
+	item.index = n
+	*pq = append(*pq, item)
+}
 
-// func (h *Heap) Push(item *Item) {
-// 	n := h.Len()
-// 	item.index = n
-// 	*h = append(*h, item)
+func (pq *PriorityQueue) Pop() interface{} {
+	old := *pq
+	n := len(old)
+	item := old[n-1]
+	old[n-1] = nil  // avoid memory leak
+	item.index = -1 // for safety
+	*pq = old[0 : n-1]
+	return item
+}
 
-// 	h.Up(h.Len() - 1)
-// }
-
-// func (h *Heap) Pop() *Item {
-// 	n := h.Len() - 1
-
-// 	h.Swap(0, n)
-// 	h.Down(0, n)
-
-// 	item := (*h)[n]
-// 	item.index = -1 // for safety
-// 	*h = (*h)[0:n]
-
-// 	return item
-// }
-
-// func (h *Heap) Fix(i int) {
-// 	h.Down(i, h.Len())
-// 	h.Up(i)
-// }
-
-// func (h *Heap) Update(item *Item) {
-// 	h.Fix(item.index)
-// }
 // @lc code=end
