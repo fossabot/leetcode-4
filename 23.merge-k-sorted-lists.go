@@ -56,7 +56,6 @@ func mergeKLists(lists []*ListNode) *ListNode {
 			heap.Push(&q, it)
 		}
 	}
-	heap.Init(&q)
 
 	solution := &ListNode{}
 	head := solution
