@@ -36,37 +36,39 @@
 
 package leetcode
 
-import "fmt"
-
 // @lc code=start
 func longestValidParentheses(s string) int {
 	maxLen := 0
-	for i, open, l, left := 0, 0, 0, 0; i < len(s); i++ {
-		l++
-		// fmt.Printf("%c ", s[i])
-		// fmt.Println(i, maxLen, l, open)
+	for i, left, right := 0, 0, 0; i < len(s); i++ {
 		if s[i] == '(' {
-			open++
+			left++
 		} else {
-			open--
-			if open == 0 {
-				if (l + left) > maxLen {
-					maxLen = (l + left)
-				}
-			} else if open > 0 {
-				if (l - open) > maxLen {
-					maxLen = (l - open)
-				}
-				left = l
-				l = 0
-			} else {
-				l = 0
-				left = 0
-				open = 0
-			}
+			right++ // Assuming only ( or )
 		}
-		fmt.Printf("%c ", s[i])
-		fmt.Println(maxLen, left, l, open)
+		if left == right {
+			if maxLen < 2*left {
+				maxLen = 2 * left
+			}
+		} else if left < right {
+			left = 0
+			right = 0
+		}
+	}
+	for i, left, right := len(s)-1, 0, 0; i >= 0; i-- {
+		if s[i] == ')' {
+			right++
+		} else {
+			left++ // Assuming only ( or )
+		}
+		if left == right {
+			if maxLen < 2*left {
+				maxLen = 2 * left
+			}
+		} else if left > right {
+			left = 0
+			right = 0
+		}
+
 	}
 	return maxLen
 }

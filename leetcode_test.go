@@ -234,18 +234,22 @@ func TestFindSubtring(t *testing.T) {
 	}
 }
 
-// func TestRemoveNthFromEnd(t *testing.T) {
-// 	tests := []struct {
-// 		head     *ListNode
-// 		target   int
-// 		expected *ListNode
-// 	}{
-// 		{[]int{-1, 2, 1, -4}, 1, 2},
-// 	}
+func TestMinWindow(t *testing.T) {
+	tests := []struct {
+		s        string
+		t        string
+		expected string
+	}{
+		{"", "ABC", ""},
+		{"ADOBECODEBANC", "", ""},
+		{"ADOBECODEBANC", "AABC", "ADOBECODEBANC"},
+		// {"ADOBECODEBANC", "ABC", "BANC"},
+		{"ADOBECODEBANCA", "AABC", "BANCA"},
+	}
 
-// 	for _, test := range tests {
-// 		if result := threeSumClosest(test.input, test.inputTarget); test.expected != result {
-// 			t.Errorf("threeSumCLosest(%v, %v) = %v, want %v\n", test.input, test.inputTarget, result, test.expected)
-// 		}
-// 	}
-// }
+	for _, test := range tests {
+		if result := minWindow(test.s, test.t); test.expected != result {
+			t.Errorf("minWindow(%v, %v) = %v, want %v\n", test.s, test.t, result, test.expected)
+		}
+	}
+}
