@@ -37,84 +37,61 @@
 package leetcode
 
 // @lc code=start
-
-// // An Item is something we manage in a priority queue.
-// type Item struct {
-// 	value    rune // The value of the item; arbitrary.
-// 	priority int  // The priority of the item in the queue.
-// 	// The index is needed by update and is maintained by the heap.Interface methods.
-// 	index int // The index of the item in the heap.
-// }
-
-// // A PriorityQueue implements heap.Interface and holds Items.
-// type PriorityQueue []*Item
-
-// func (pq PriorityQueue) Len() int { return len(pq) }
-
-// func (pq PriorityQueue) Less(i, j int) bool {
-// 	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-// 	return pq[i].priority < pq[j].priority
-// }
-
-// func (pq PriorityQueue) Swap(i, j int) {
-// 	pq[i], pq[j] = pq[j], pq[i]
-// 	pq[i].index = i
-// 	pq[j].index = j
-// }
-
-// // Push implements pushing a new element in Priority queue
-// func (pq *PriorityQueue) Push(x interface{}) {
-// 	n := len(*pq)
-// 	item := x.(*Item)
-// 	item.index = n
-// 	*pq = append(*pq, item)
-// }
-
-// // Pop extracts the lowest element from Priority Queue
-// func (pq *PriorityQueue) Pop() interface{} {
-// 	old := *pq
-// 	n := len(old)
-// 	item := old[n-1]
-// 	old[n-1] = nil  // avoid memory leak
-// 	item.index = -1 // for safety
-// 	*pq = old[0 : n-1]
-// 	return item
-// }
-
-// // update modifies the priority and value of an Item in the queue.
-// func (pq *PriorityQueue) update(item *Item, value string, priority int) {
-// 	item.value = value
-// 	item.priority = priority
-// 	heap.Fix(pq, item.index)
-// }
-
 type char struct {
 	ch    rune
 	index int
 }
 
 func minWindow(s string, t string) string {
-	tMap := make(map[rune]int)
-	lst := make([]char, 0)
-	left, right := 0, 0
-	// min := 0
-
-	for _, ch := range t {
-		tMap[ch] = 0
-	}
-
-	for i, ch := range s {
-		if _, ok := tMap[ch]; ok {
-			tMap[ch]++
-			lst = append(lst, char{ch, i})
-		}
-		for tMap[lst[0].ch] != 1 {
-			lst = lst[1:]
-		}
-	}
-	if right == 0 {
+	// Return if any of the strings are empty
+	if len(s) == 0 || len(t) == 0 {
 		return ""
 	}
+
+	tMap := make(map[byte]int)
+	for i := 0; i < len(t); i++ {
+		tMap[t[i]]++
+	}
+
+	left, right := 0, 0
+
+	// left & right index initialized to 0
+	// Minimum length to length of string + 1
+	// ValidLength is the number of character to match
+	// Current Map to increase value when right includes a new character and
+	// decreases when left passes a new character
+	for l, r, minLen, valL, curMap := 0, 0, len(s)+1, len(t),
+		make(map[byte]int); r < len(s); r++ {
+		rch := s[r]
+
+		if _, ok := tMap[rch]; ok {
+			curMap[rch]++
+			if curMap[rch] <= tMap[rch] {
+				valL--
+			}
+		}
+
+		if valL == 0 {
+			for ; ; l++ {
+				lch := s[l]
+				val, ok := tMap[lch]
+				if !ok || curMap[lch] > val {
+					if curMap[lch] > val {
+						curMap[lch]--
+					}
+				} else {
+					break
+				}
+			}
+
+			length := r - l + 1
+			if length < minLen {
+				left, right = l, r+1
+				minLen = length
+			}
+		}
+	}
+
 	return s[left:right]
 }
 
