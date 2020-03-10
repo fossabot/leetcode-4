@@ -37,11 +37,6 @@
 package leetcode
 
 // @lc code=start
-type char struct {
-	ch    rune
-	index int
-}
-
 func minWindow(s string, t string) string {
 	// Return if any of the strings are empty
 	if len(s) == 0 || len(t) == 0 {
