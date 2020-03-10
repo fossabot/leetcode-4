@@ -71,23 +71,24 @@ func minWindow(s string, t string) string {
 			}
 		}
 
-		if valL == 0 {
-			for ; ; l++ {
-				lch := s[l]
-				val, ok := tMap[lch]
-				if !ok || curMap[lch] > val {
-					if curMap[lch] > val {
-						curMap[lch]--
-					}
-				} else {
-					break
+		// Enter the loop when all the characters are found
+		for ; valL == 0; l++ {
+			lch := s[l]
+			val, ok := tMap[lch]
+			if !ok || curMap[lch] > val {
+				if curMap[lch] > val {
+					curMap[lch]--
 				}
-			}
-
-			length := r - l + 1
-			if length < minLen {
-				left, right = l, r+1
-				minLen = length
+			} else {
+				length := r - l + 1
+				if length < minLen {
+					left, right = l, r+1
+					minLen = length
+				}
+				// decreasing current character and exiting loop by incrementing
+				// loop condition
+				curMap[lch]--
+				valL++
 			}
 		}
 	}
