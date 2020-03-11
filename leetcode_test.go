@@ -254,3 +254,41 @@ func TestMinWindow(t *testing.T) {
 		}
 	}
 }
+
+func TestSolve(t *testing.T) {
+	tests := []struct {
+		input    [][]byte
+		expected [][]byte
+	}{
+		// {
+		// 	[][]byte{
+		// 		{'X', 'X', 'X', 'X'},
+		// 		{'X', 'O', 'O', 'X'},
+		// 		{'X', 'X', 'O', 'X'},
+		// 		{'X', 'O', 'X', 'X'},
+		// 	},
+		// 	[][]byte{
+		// 		{'X', 'X', 'X', 'X'},
+		// 		{'X', 'X', 'X', 'X'},
+		// 		{'X', 'X', 'X', 'X'},
+		// 		{'X', 'O', 'X', 'X'},
+		// 	},
+		// },
+		{
+			[][]byte{
+				{'X', 'X'},
+				{'X', 'O'},
+			},
+			[][]byte{
+				{'X', 'X'},
+				{'X', 'X'},
+			},
+		},
+	}
+
+	for _, test := range tests {
+		if solve(test.input); !reflect.DeepEqual(test.input, test.expected) {
+			t.Errorf("solve(%v)", test.input)
+		}
+	}
+}
