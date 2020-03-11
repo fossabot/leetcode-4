@@ -55,16 +55,5 @@ func getRow(rowIndex int) []int {
 		result = append(result, temp)
 	}
 	return result[rowIndex]
-	// result := []int{1}
-	// for i := 0; i < rowIndex; i++ {
-	// 	result = append(result, 1)
-	// 	fmt.Println(result)
-	// 	for j := i; j > 0; j-- {
-	// 		result[j] += result[j-1]
-	// 		fmt.Println(result)
-	// 	}
-	// }
-	// return result
 }
-
 // @lc code=end

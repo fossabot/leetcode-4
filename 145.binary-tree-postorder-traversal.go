@@ -34,6 +34,13 @@
 
 package leetcode
 
+// TreeNode is a data structure for BST
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 // @lc code=start
 
 /**
@@ -45,15 +52,15 @@ package leetcode
  * }
  */
 
-// TreeNode is a data structure for BST
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 func postorderTraversal(root *TreeNode) []int {
-	return []int{}
+	if root == nil {
+		return []int{}
+	}
+	// result := make([]int, 0)
+	result := postorderTraversal(root.Left)
+	result = append(result, postorderTraversal(root.Right)...)
+	result = append(result, root.Val)
+	return result
 }
 
 // @lc code=end

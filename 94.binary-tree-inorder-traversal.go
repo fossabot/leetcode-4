@@ -49,23 +49,6 @@ func inorderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
 	result = append(inorderTraversal(root.Left), root.Val)
 	result = append(result, inorderTraversal(root.Right)...)
-	// treeMap := make(map[*TreeNode]bool, 0)
-	// stack:=stackNew()
-	// if !treeMap[root] {
-	// }
 	return result
 }
-
-// var stack []*TreeNode
-
-// stack = append(stack, "world!") // Push
-// stack = append(stack, "Hello ")
-
-// for len(stack) > 0 {
-// 	n := len(stack) - 1 // Top element
-// 	fmt.Print(stack[n])
-
-// 	stack = stack[:n] // Pop
-// }
-
 // @lc code=end
