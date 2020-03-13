@@ -49,8 +49,6 @@
 
 package leetcode
 
-import "fmt"
-
 // @lc code=start
 func solve(board [][]byte) {
 	nX := len(board)
@@ -58,35 +56,36 @@ func solve(board [][]byte) {
 		return
 	}
 	nY := len(board[0])
-	boardMap := make([][]bool, nX)
+	visited := make([][]bool, nX)
 	for x := 0; x < nX; x++ {
-		boardMap[x] = make([]bool, nY)
+		visited[x] = make([]bool, nY)
 	}
 	for x := 0; x < nX; x++ {
 		for y := 0; y < nY; y++ {
-			fmt.Println(boardMap)
-			if boardMap[x][y] {
-				continue
-			}
-			if board[x][y] == 'O' {
-				check(board, boardMap, x, y, nX, nY)
-				if !boardMap[x][y] {
-					board[x][y] = 'X'
+			if !visited[x][y] {
+				if board[x][y] == 'X' {
+					visited[x][y] = true
+				} else {
+					visit(board, visited, x, y, nX, nY)
+					visited[x][y] = true
 				}
 			}
 		}
 	}
 }
 
-func check(board [][]byte, boardMap [][]bool, x, y, nX, nY int) {
-	if (x == 0 || x == nX-1 || y == 0 || y == nY-1) && board[x][y] == 'O' {
-		boardMap[x][y] = true
+func visit(board [][]byte, visited [][]bool, x, y, nX, nY int) {
+	if visited[x][y] || x == 0 || x == nX-1 || y == 0 || y == nY-1 {
+		visited[x][y] = true
 		return
 	}
-	check(board, boardMap, x-1, y, nX, nY)
-	check(board, boardMap, x, y-1, nX, nY)
-	check(board, boardMap, x+1, y, nX, nY)
-	check(board, boardMap, x, y+1, nX, nY)
+
+	visit(board, visited, x+1, y, nX, nY)
+	visit(board, visited, x, y+1, nX, nY)
+	if board[x-1][y] != 'O' && board[x+1][y] != 'O' && board[x][y-1] != 'O' && board[x][y+1] != 'O' {
+		board[x][y] = 'X'
+	}
+	visited[x][y] = true
 }
 
 // @lc code=end

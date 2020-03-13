@@ -110,6 +110,10 @@ func parseAtoi(str string) uint64 {
 	return result
 }
 func myAtoi(str string) int {
+	// pattern := `^(\s)*(\+\-)?[0-9]+`
+	// var regexP = regexp.MustCompile(pattern)
+	// out := regexP.FindAllStringIndex(str)
+	// fmt.Println(out)
 	var result int
 	for i, char := range str {
 		if char != ' ' {

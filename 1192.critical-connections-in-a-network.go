@@ -50,13 +50,25 @@ package leetcode
 
 // @lc code=start
 // func criticalConnections(n int, connections [][]int) [][]int {
-// 	var criticalConns [][]int
-// 	disc := make([]int, n)
-// 	low := make([]int, n)
-// 	for _, connection := range connections {
-
+// 	g := make([][]int, n)
+// 	for _, conn := range connections {
+// 		i, j := conn[0], conn[1]
+// 		// if i > j {
+// 		// 	conn[0], conn[1] = conn[1], conn[0]
+// 		// }
+// 		g[i] = append(g[i], j)
+// 		g[j] = append(g[j], i)
 // 	}
-// 	return criticalConns
+// 	fmt.Println(g)
+// 	fmt.Println(connections)
+// 	rank := make([]int, n)
+// 	rank[0] = 0
+// 	criticalVisit(g, rank, 0, 0)
+// 	return connections
+// }
+
+// func criticalVisit(g [][]int, rank []int, node, dep int) (r int) {
+
 // }
 
 // @lc code=end

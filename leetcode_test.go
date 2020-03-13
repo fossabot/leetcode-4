@@ -28,16 +28,6 @@ func TestFindRedundantConnection(t *testing.T) {
 	}
 }
 
-// func TestCriticalConnections(t *testing.T) {
-// 	input1 := [][]int{{0, 1}, {1, 2}, {2, 0}, {1, 3}}
-// 	expectedResult1 := [][]int{{1, 3}}
-// 	actualResult1 := criticalConnections(4, input1)
-// 	if actualResult1[0][0] != expectedResult1[0][0] && actualResult1[0][1] !=
-// 		expectedResult1[0][1] {
-// 		t.Error("Value not matched. Expected [1,3] Got Result", actualResult1)
-// 	}
-// }
-
 func TestThreeSum(t *testing.T) {
 	tests := []struct {
 		input []int
@@ -260,20 +250,6 @@ func TestSolve(t *testing.T) {
 		input    [][]byte
 		expected [][]byte
 	}{
-		// {
-		// 	[][]byte{
-		// 		{'X', 'X', 'X', 'X'},
-		// 		{'X', 'O', 'O', 'X'},
-		// 		{'X', 'X', 'O', 'X'},
-		// 		{'X', 'O', 'X', 'X'},
-		// 	},
-		// 	[][]byte{
-		// 		{'X', 'X', 'X', 'X'},
-		// 		{'X', 'X', 'X', 'X'},
-		// 		{'X', 'X', 'X', 'X'},
-		// 		{'X', 'O', 'X', 'X'},
-		// 	},
-		// },
 		{
 			[][]byte{
 				{'X', 'X'},
@@ -281,7 +257,21 @@ func TestSolve(t *testing.T) {
 			},
 			[][]byte{
 				{'X', 'X'},
-				{'X', 'X'},
+				{'X', 'O'},
+			},
+		},
+		{
+			[][]byte{
+				{'X', 'X', 'X', 'X'},
+				{'X', 'O', 'O', 'X'},
+				{'X', 'X', 'O', 'X'},
+				{'X', 'O', 'X', 'X'},
+			},
+			[][]byte{
+				{'X', 'X', 'X', 'X'},
+				{'X', 'X', 'X', 'X'},
+				{'X', 'X', 'X', 'X'},
+				{'X', 'O', 'X', 'X'},
 			},
 		},
 	}
@@ -289,6 +279,60 @@ func TestSolve(t *testing.T) {
 	for _, test := range tests {
 		if solve(test.input); !reflect.DeepEqual(test.input, test.expected) {
 			t.Errorf("solve(%v)", test.input)
+		}
+	}
+}
+
+// func TestCriticalConnections(t *testing.T) {
+// 	input1 := [][]int{{0, 1}, {1, 2}, {2, 0}, {1, 3}}
+// 	expectedResult1 := [][]int{{1, 3}}
+// 	actualResult1 := criticalConnections(4, input1)
+// 	if actualResult1[0][0] != expectedResult1[0][0] && actualResult1[0][1] !=
+// 		expectedResult1[0][1] {
+// 		t.Error("Value not matched. Expected [1,3] Got Result", actualResult1)
+// 	}
+// }
+
+func TestIsMatch(t *testing.T) {
+	tests := []struct {
+		str      string
+		pattern  string
+		expected bool
+	}{
+		{"mississippi", "mis*is*p*.", false},
+		// {"aaaaa", "bba", -1},
+		// {"", "bb", -1},
+		// {"bb", "", 0},
+		// {"mississippi", "issip", 4},
+	}
+
+	for _, test := range tests {
+		if result := isMatch(test.str, test.pattern); test.expected != result {
+			t.Errorf("isMatch(%v, %v) = %v, expected %v\n", test.str, test.pattern, result, test.expected)
+		}
+	}
+}
+
+func TestPermute(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected [][]int
+	}{
+		{[]int{}, [][]int{{}}},
+		{[]int{1}, [][]int{{1}}},
+		{[]int{1, 2, 3}, [][]int{
+			{1, 2, 3},
+			{1, 3, 2},
+			{2, 1, 3},
+			{2, 3, 1},
+			{3, 1, 2},
+			{3, 2, 1},
+		}},
+	}
+
+	for _, test := range tests {
+		if got := permute(test.input); !reflect.DeepEqual(got, test.expected) {
+			t.Errorf("permute(%v) = %v, want %v\n", test.input, got, test.expected)
 		}
 	}
 }
