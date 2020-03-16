@@ -203,7 +203,92 @@ func TestThreeSumClosest(t *testing.T) {
 	}
 }
 
+<<<<<<< HEAD
 // func TestLetterCombinations(t *testing.T) {
+=======
+func TestLetterCombinations(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected []string
+	}{
+		{"23", []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"}},
+	}
+
+	for _, test := range tests {
+		if result := letterCombinations(test.input); !reflect.DeepEqual(test.expected, result) {
+			t.Errorf("letterCombinations(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestConstructor(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected LRUCache
+	}{
+		{2, Constructor(2)},
+	}
+
+	for _, test := range tests {
+		if result := Constructor(test.input); result.capacity != test.expected.capacity {
+			t.Errorf("Constructor(%v) = %v, expected %v\n", test.input, result.capacity, test.expected.capacity)
+		}
+	}
+}
+
+func TestLRU(t *testing.T) {
+	cache := Constructor(2)
+
+	// cache.Put(1, 1)
+	// cache.Put(2, 2)
+	// val := cache.Get(1) // returns 1
+	// if val != 1 {
+	// 	t.Errorf("Wrong Output. Expected 1, got %v", val)
+	// }
+	// cache.Put(3, 3)    // evicts key 2
+	// val = cache.Get(2) // returns -1 (not found)
+	// if val != -1 {
+	// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+	// }
+	// cache.Put(4, 4)    // evicts key 1
+	// val = cache.Get(1) // returns -1 (not found)
+	// if val != -1 {
+	// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+	// }
+	// val = cache.Get(3) // returns 3
+	// if val != 3 {
+	// 	t.Errorf("Wrong Output. Expected 3, got %v", val)
+	// }
+	// val = cache.Get(4) // returns 4
+	// if val != 4 {
+	// 	t.Errorf("Wrong Output. Expected 4, got %v", val)
+	// }
+	// cache.Put(2, 1)
+	// cache.Put(1, 1)
+	// cache.Put(2, 3)
+	// cache.Put(4, 1)     // evicts key 1
+	// val := cache.Get(1) // returns 1
+	// if val != -1 {
+	// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+	// }
+	// val = cache.Get(2) // returns -1 (not found)
+	// if val != 3 {
+	// 	t.Errorf("Wrong Output. Expected 3, got %v", val)
+	// }
+	cache.Put(2, 1)
+	cache.Put(2, 2)
+	val := cache.Get(2)
+	if val != 2 {
+		t.Errorf("Wrong Output. Expected 2, got %v", val)
+	}
+	cache.Put(1, 1)
+	cache.Put(4, 1)    // evicts key 1
+	val = cache.Get(2) // returns 1
+	if val != -1 {
+		t.Errorf("Wrong Output. Expected -1, got %v", val)
+	}
+}
+>>>>>>> bb07349... Sample
 func TestFindSubtring(t *testing.T) {
 	tests := []struct {
 		inString string
@@ -224,6 +309,7 @@ func TestFindSubtring(t *testing.T) {
 	}
 }
 
+<<<<<<< HEAD
 func TestMinWindow(t *testing.T) {
 	tests := []struct {
 		s        string
@@ -309,16 +395,126 @@ func TestIsMatch(t *testing.T) {
 	for _, test := range tests {
 		if result := isMatch(test.str, test.pattern); test.expected != result {
 			t.Errorf("isMatch(%v, %v) = %v, expected %v\n", test.str, test.pattern, result, test.expected)
+=======
+func TestRotate(t *testing.T) {
+	tests := []struct {
+		input    [][]int
+		expected [][]int
+	}{
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, [][]int{{7, 4, 1}, {8, 5, 2}, {9, 6, 3}}},
+		{[][]int{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}}, [][]int{{13, 9, 5, 1}, {14, 10, 6, 2}, {15, 11, 7, 3}, {16, 12, 8, 4}}},
+	}
+
+	for _, test := range tests {
+		if rotate(test.input); !reflect.DeepEqual(test.input, test.expected) {
+			t.Errorf("Result = %v, want %v\n", test.input, test.expected)
 		}
 	}
 }
 
+func TestMinWindow(t *testing.T) {
+	tests := []struct {
+		s        string
+		t        string
+		expected string
+	}{
+		{"ADOBECODEBANC", "ABC", "BANC"},
+		// {"ADOBECODEBANC", "ABCP", ""},
+	}
+
+	for _, test := range tests {
+		if result := minWindow(test.s, test.t); test.expected != result {
+			t.Errorf("minWindow(%v, %v) = %v, expected %v\n", test.s, test.t, result, test.expected)
+		}
+	}
+}
+
+func TestGetRow(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected []int
+	}{
+		{3, []int{1, 3, 3, 2}},
+		// {2, "11"},
+		// {3, "21"},
+		// {4, "1211"},
+		// {5, "111221"},
+	}
+
+	for _, test := range tests {
+		if result := getRow(test.input); !reflect.DeepEqual(test.expected, result) {
+			t.Errorf("getRow(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestMultiply(t *testing.T) {
+	tests := []struct {
+		num1     string
+		num2     string
+		expected string
+	}{
+		{"0", "3", "0"},
+		{"2", "3", "6"},
+		{"123", "456", "56088"},
+	}
+
+	for _, test := range tests {
+		if result := multiply(test.num1, test.num2); test.expected != result {
+			t.Errorf("multiply(%v, %v) = %v, expected %v\n", test.num1, test.num2, result, test.expected)
+>>>>>>> bb07349... Sample
+		}
+	}
+}
+
+<<<<<<< HEAD
 func TestPermute(t *testing.T) {
+=======
+func TestLongestValidParentheses(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{")", 0},
+		{"()", 2},
+		{"(()", 2},
+		{")()())", 4},
+		{"()(()", 2},
+		// {"(()(((()", 2},
+	}
+
+	for _, test := range tests {
+		if result := longestValidParentheses(test.input); result != test.expected {
+			t.Errorf("longestValidParentheses %v = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestLongestPalindromeLength(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{"abccccdd", 7},
+		// {"abbapa", "abba"},
+		// {"cbbd", "bb"},
+	}
+
+	for _, test := range tests {
+		if result := longestPalindromeLength(test.input); result != test.expected {
+			t.Errorf("longestPalindromeLength(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestSubsets(t *testing.T) {
+>>>>>>> bb07349... Sample
 	tests := []struct {
 		input    []int
 		expected [][]int
 	}{
 		{[]int{}, [][]int{{}}},
+<<<<<<< HEAD
 		{[]int{1}, [][]int{{1}}},
 		{[]int{1, 2, 3}, [][]int{
 			{1, 2, 3},
@@ -333,6 +529,84 @@ func TestPermute(t *testing.T) {
 	for _, test := range tests {
 		if got := permute(test.input); !reflect.DeepEqual(got, test.expected) {
 			t.Errorf("permute(%v) = %v, want %v\n", test.input, got, test.expected)
+=======
+		{[]int{1, 2, 3}, [][]int{{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}}},
+	}
+
+	for _, test := range tests {
+		if result := subsets(test.input); !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("\nsubsets(%v) = %v, \n\t\texpected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestNumIslands(t *testing.T) {
+	tests := []struct {
+		input    [][]byte
+		expected int
+	}{
+		{[][]byte{}, 0},
+		{[][]byte{
+			{'1', '1', '1', '1', '0'},
+			{'1', '1', '0', '1', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '0', '0', '0'},
+		}, 1},
+		{[][]byte{
+			{'1', '1', '0', '0', '0'},
+			{'1', '1', '0', '0', '0'},
+			{'0', '0', '1', '0', '0'},
+			{'0', '0', '0', '1', '1'},
+		}, 3},
+	}
+
+	for _, test := range tests {
+		if result := numIslands(test.input); result != test.expected {
+			t.Errorf("numIslands(%v) = %v, expected %v", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestMergeKLists(t *testing.T) {
+	tests := []struct {
+		input    []*ListNode
+		expected *ListNode
+	}{
+		{[]*ListNode{nil}, nil},
+		{[]*ListNode{newList([]int{1, 4, 5}), newList([]int{1, 3, 4}), newList([]int{2, 6})}, newList([]int{1, 1, 2, 3, 4, 4, 5, 6})},
+	}
+
+	for _, test := range tests {
+		if result := mergeKLists(test.input); !equal(result, test.expected) {
+			t.Errorf("mergeKLists result\n%v\nexpected\n%v", print(result), print(test.expected))
+		}
+	}
+}
+
+func TestLexicalOrder(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected []int
+	}{
+		{1, []int{1}},
+		{9, []int{1, 2, 3, 4, 5, 6, 7, 8, 9}},
+		{10, []int{1, 10, 2, 3, 4, 5, 6, 7, 8, 9}},
+		{13, []int{1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9}},
+		// {34, []int{1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 22,
+		// 	23, 24, 25, 26, 27, 28, 29, 3, 30, 31, 32, 33, 34, 4, 5, 6, 7, 8,
+		// 	9}},
+		// {101, []int{1, 10, 100, 101, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2,
+		// 	20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 30, 31, 32, 33, 34, 35,
+		// 	36, 37, 38, 39, 4, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 5, 50, 51,
+		// 	52, 53, 54, 55, 56, 57, 58, 59, 6, 60, 61, 62, 63, 64, 65, 66, 67,
+		// 	68, 69, 7, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 8, 80, 81, 82, 83,
+		// 	84, 85, 86, 87, 88, 89, 9, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99}},
+	}
+
+	for _, test := range tests {
+		if result := lexicalOrder(test.input); !reflect.DeepEqual(test.expected, result) {
+			t.Errorf("lexicalOrder(%v) = %v, expected %v\n", test.input, result, test.expected)
+>>>>>>> bb07349... Sample
 		}
 	}
 }
