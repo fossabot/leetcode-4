@@ -203,9 +203,7 @@ func TestThreeSumClosest(t *testing.T) {
 	}
 }
 
-<<<<<<< HEAD
 // func TestLetterCombinations(t *testing.T) {
-=======
 func TestLetterCombinations(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -288,7 +286,6 @@ func TestLRU(t *testing.T) {
 		t.Errorf("Wrong Output. Expected -1, got %v", val)
 	}
 }
->>>>>>> bb07349... Sample
 func TestFindSubtring(t *testing.T) {
 	tests := []struct {
 		inString string
@@ -309,7 +306,6 @@ func TestFindSubtring(t *testing.T) {
 	}
 }
 
-<<<<<<< HEAD
 func TestMinWindow(t *testing.T) {
 	tests := []struct {
 		s        string
@@ -395,7 +391,9 @@ func TestIsMatch(t *testing.T) {
 	for _, test := range tests {
 		if result := isMatch(test.str, test.pattern); test.expected != result {
 			t.Errorf("isMatch(%v, %v) = %v, expected %v\n", test.str, test.pattern, result, test.expected)
-=======
+		}
+	}
+}
 func TestRotate(t *testing.T) {
 	tests := []struct {
 		input    [][]int
@@ -408,23 +406,6 @@ func TestRotate(t *testing.T) {
 	for _, test := range tests {
 		if rotate(test.input); !reflect.DeepEqual(test.input, test.expected) {
 			t.Errorf("Result = %v, want %v\n", test.input, test.expected)
-		}
-	}
-}
-
-func TestMinWindow(t *testing.T) {
-	tests := []struct {
-		s        string
-		t        string
-		expected string
-	}{
-		{"ADOBECODEBANC", "ABC", "BANC"},
-		// {"ADOBECODEBANC", "ABCP", ""},
-	}
-
-	for _, test := range tests {
-		if result := minWindow(test.s, test.t); test.expected != result {
-			t.Errorf("minWindow(%v, %v) = %v, expected %v\n", test.s, test.t, result, test.expected)
 		}
 	}
 }
@@ -462,14 +443,10 @@ func TestMultiply(t *testing.T) {
 	for _, test := range tests {
 		if result := multiply(test.num1, test.num2); test.expected != result {
 			t.Errorf("multiply(%v, %v) = %v, expected %v\n", test.num1, test.num2, result, test.expected)
->>>>>>> bb07349... Sample
 		}
 	}
 }
 
-<<<<<<< HEAD
-func TestPermute(t *testing.T) {
-=======
 func TestLongestValidParentheses(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -508,13 +485,11 @@ func TestLongestPalindromeLength(t *testing.T) {
 }
 
 func TestSubsets(t *testing.T) {
->>>>>>> bb07349... Sample
 	tests := []struct {
 		input    []int
 		expected [][]int
 	}{
 		{[]int{}, [][]int{{}}},
-<<<<<<< HEAD
 		{[]int{1}, [][]int{{1}}},
 		{[]int{1, 2, 3}, [][]int{
 			{1, 2, 3},
@@ -524,13 +499,6 @@ func TestSubsets(t *testing.T) {
 			{3, 1, 2},
 			{3, 2, 1},
 		}},
-	}
-
-	for _, test := range tests {
-		if got := permute(test.input); !reflect.DeepEqual(got, test.expected) {
-			t.Errorf("permute(%v) = %v, want %v\n", test.input, got, test.expected)
-=======
-		{[]int{1, 2, 3}, [][]int{{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}}},
 	}
 
 	for _, test := range tests {
@@ -592,21 +560,11 @@ func TestLexicalOrder(t *testing.T) {
 		{9, []int{1, 2, 3, 4, 5, 6, 7, 8, 9}},
 		{10, []int{1, 10, 2, 3, 4, 5, 6, 7, 8, 9}},
 		{13, []int{1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9}},
-		// {34, []int{1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2, 20, 21, 22,
-		// 	23, 24, 25, 26, 27, 28, 29, 3, 30, 31, 32, 33, 34, 4, 5, 6, 7, 8,
-		// 	9}},
-		// {101, []int{1, 10, 100, 101, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2,
-		// 	20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 3, 30, 31, 32, 33, 34, 35,
-		// 	36, 37, 38, 39, 4, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 5, 50, 51,
-		// 	52, 53, 54, 55, 56, 57, 58, 59, 6, 60, 61, 62, 63, 64, 65, 66, 67,
-		// 	68, 69, 7, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 8, 80, 81, 82, 83,
-		// 	84, 85, 86, 87, 88, 89, 9, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99}},
 	}
 
 	for _, test := range tests {
 		if result := lexicalOrder(test.input); !reflect.DeepEqual(test.expected, result) {
 			t.Errorf("lexicalOrder(%v) = %v, expected %v\n", test.input, result, test.expected)
->>>>>>> bb07349... Sample
 		}
 	}
 }
