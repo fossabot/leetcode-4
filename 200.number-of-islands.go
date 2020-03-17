@@ -55,11 +55,14 @@ func numIslands(grid [][]byte) int {
 	for i := 0; i < nRow; i++ {
 		for j := 0; j < nCol; j++ {
 			if grid[i][j] == '1' {
+				// For assigning island value
 				count++
 				fill(grid, i, j, nRow, nCol, count)
 			}
 		}
 	}
+
+	// Started with 1
 	return count - 1
 }
 
