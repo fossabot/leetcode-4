@@ -1,4 +1,4 @@
-// package leetcode
+package leetcode
 
 // type CustomStack struct {
 // 	maxSize int

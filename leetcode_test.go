@@ -598,3 +598,21 @@ func TestExist(t *testing.T) {
 		}
 	}
 }
+
+func TestMinCut(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int
+	}{
+		{"aab", 1},
+		{"abbab", 1},
+		{"noonabbad", 2},
+		{"adabdcaebdcebdcacaaaadbbcadabcbeabaadcbcaaddebdbddcbdacdbbaedbdaaecabdceddccbdeeddccdaabbabbdedaaabcdadbdabeacbeadbaddcbaacdbabcccbaceedbcccedbeecbccaecadccbdbdccbcbaacccbddcccbaedbacdbcaccdcaadcbaebebcceabbdcdeaabdbabadeaaaaedbdbcebcbddebccacacddebecabccbbdcbecbaeedcdacdcbdbebbacddddaabaedabbaaabaddcdaadcccdeebcabacdadbaacdccbeceddeebbbdbaaaaabaeecccaebdeabddacbedededebdebabdbcbdcbadbeeceecdcdbbdcbdbeeebcdcabdeeacabdeaedebbcaacdadaecbccbededceceabdcabdeabbcdecdedadcaebaababeedcaacdbdacbccdbcece", 273},
+	}
+
+	for _, test := range tests {
+		if result := minCut(test.input); result != test.expected {
+			t.Errorf("minCut(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
