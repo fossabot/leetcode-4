@@ -616,3 +616,19 @@ func TestMinCut(t *testing.T) {
 		}
 	}
 }
+
+func TestGroupAnagrams(t *testing.T) {
+	tests := []struct {
+		input    []string
+		expected [][]string
+	}{
+		{[]string{"eat", "tea", "tan", "ate", "nat", "bat"},
+			[][]string{{"ate", "eat", "tea"}, {"nat", "tan"}, {"bat"}}},
+	}
+
+	for _, test := range tests {
+		if result := groupAnagrams(test.input); !reflect.DeepEqual(result, test.expected) {
+			t.Errorf("groupAnagrams(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
