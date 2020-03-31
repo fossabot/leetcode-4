@@ -45,6 +45,9 @@ import (
 
 // @lc code=start
 func coinChange(coins []int, amount int) int {
+	if amount == 0 {
+		return 0
+	}
 	sort.Ints(coins)
 	minCoin := make([]int, amount+1)
 
@@ -68,7 +71,7 @@ func coinChange(coins []int, amount int) int {
 		}
 	}
 
-	if amount != 0 && minCoin[amount] == 0 {
+	if minCoin[amount] == 0 {
 		return -1
 	}
 
