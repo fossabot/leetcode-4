@@ -68,7 +68,7 @@ func coinChange(coins []int, amount int) int {
 		}
 	}
 
-	if amount!=0 && minCoin[amount] == 0 {
+	if amount != 0 && minCoin[amount] == 0 {
 		return -1
 	}
 
