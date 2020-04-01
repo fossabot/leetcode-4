@@ -1,4 +1,6 @@
-package leetcode
+package contest
+
+import "sort"
 
 type Seats [][]int
 
