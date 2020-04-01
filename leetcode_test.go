@@ -632,3 +632,21 @@ func TestGroupAnagrams(t *testing.T) {
 		}
 	}
 }
+
+func TestReversePairs(t *testing.T) {
+	tests := []struct {
+		input    []int
+		expected int
+	}{
+		{[]int{1, 3, 2, 3, 1}, 2},
+		{[]int{2, 4, 3, 5, 1}, 3},
+		{[]int{2147483647, 2147483647, -2147483647, -2147483647, -2147483647,
+			2147483647}, 9},
+	}
+
+	for _, test := range tests {
+		if result := reversePairs(test.input); test.expected != result {
+			t.Errorf("reversePairs(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
