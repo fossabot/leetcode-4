@@ -669,3 +669,35 @@ func TestRotateRight(t *testing.T) {
 		}
 	}
 }
+
+func TestIsHappy(t *testing.T) {
+	tests := []struct {
+		input    int
+		expected bool
+	}{
+		{1, true},
+		{19, true},
+		{20, false},
+	}
+
+	for _, test := range tests {
+		if result := isHappy(test.input); test.expected != result {
+			t.Errorf("isHappy(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestReverseString(t *testing.T) {
+	tests := []struct {
+		input    []byte
+		expected []byte
+	}{
+		{[]byte("hello"), []byte("olleh")},
+	}
+
+	for _, test := range tests {
+		if reverseString(test.input); !reflect.DeepEqual(test.expected, test.input) {
+			t.Errorf("reverseString(%v), expected %v\n", string(test.input), string(test.expected))
+		}
+	}
+}
