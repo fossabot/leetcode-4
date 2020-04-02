@@ -50,34 +50,24 @@ package leetcode
  * }
  */
 func rotateRight(head *ListNode, k int) *ListNode {
-	start, depth := head, 0
-
-	for head != nil {
-		head = head.Next
-		depth++
+	if k == 0 || head == nil {
+		return head
 	}
 
-	if depth == 0 || k == 0 {
-		return start
+	slow, fast := head, head
+	for i := 0; i < k; i++ {
+		if fast.Next == nil {
+			return rotateRight(head, k%(i+1))
+		}
+		fast = fast.Next
 	}
 
-	k %= depth
-
-	head = start
-
-	for i := 0; i < (depth - k - 1); i++ {
-		head = head.Next
+	for fast.Next != nil {
+		slow, fast = slow.Next, fast.Next
 	}
-
-	newStart := head.Next
-	head.Next = nil
-	head = newStart
-
-	for head.Next != nil {
-		head = head.Next
-	}
-	head.Next = start
-	return newStart
+	newHead := slow.Next
+	slow.Next, fast.Next = nil, head
+	return newHead
 }
 
 // @lc code=end

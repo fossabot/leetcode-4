@@ -545,8 +545,8 @@ func TestMergeKLists(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		if result := mergeKLists(test.input); !equal(result, test.expected) {
-			t.Errorf("mergeKLists result\n%v\nexpected\n%v", print(result), print(test.expected))
+		if result := mergeKLists(test.input); !equalList(result, test.expected) {
+			t.Errorf("mergeKLists result\n%v\nexpected\n%v", printList(result), printList(test.expected))
 		}
 	}
 }
@@ -647,6 +647,25 @@ func TestReversePairs(t *testing.T) {
 	for _, test := range tests {
 		if result := reversePairs(test.input); test.expected != result {
 			t.Errorf("reversePairs(%v) = %v, expected %v\n", test.input, result, test.expected)
+		}
+	}
+}
+
+func TestRotateRight(t *testing.T) {
+	tests := []struct {
+		inputNode *ListNode
+		inputNum  int
+		expected  *ListNode
+	}{
+		{newList([]int{1, 2, 3, 4, 5}), 0, newList([]int{1, 2, 3, 4, 5})},
+		{newList([]int{1, 2, 3, 4, 5}), 5, newList([]int{1, 2, 3, 4, 5})},
+		{newList([]int{1, 2, 3, 4, 5}), 2, newList([]int{4, 5, 1, 2, 3})},
+		{newList([]int{1, 2, 3, 4, 5}), 7, newList([]int{4, 5, 1, 2, 3})},
+	}
+
+	for _, test := range tests {
+		if result := rotateRight(test.inputNode, test.inputNum); !equalList(result, test.expected) {
+			t.Errorf("rotateRight result\n%v\nexpected\n%v", printList(result), printList(test.expected))
 		}
 	}
 }
