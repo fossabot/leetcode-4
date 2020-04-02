@@ -48,22 +48,49 @@
 
 package leetcode
 
+import (
+	"container/heap"
+)
+
 // @lc code=start
-// func networkDelayTime(times [][]int, N int, K int) int {
-// 	graph := make([][][]int, N)
-// 	for _, edge := range times {
-// 		// Changing index from 1 to N -> 0 to N-1
-// 		edge := []int{edge[0] - 1, edge[1] - 1, edge[2]}
-// 		graph[edge[0]] = append(graph[edge[0]], edge[1:])
-// 	}
-// 	visited := make(map[int]bool)
-// 	visitTime := make([]int, N)
-// 	for vertex, edges := range graph {
-// 		for _, edge := range edges {
-// 			curVisTime
-// 		}
-// 	}
-// 	// return 0
-// }
+func networkDelayTime(times [][]int, N int, K int) int {
+	// Converting the graph to slice of slice consisting of dest and weights
+	network := getGraph(times, N)
+
+	// Slice of nodes in the graph. This will hold all the nodes in graph
+	nodeSlice := make([]*pqGraphNode, N)
+	nodeSlice[K-1] = &pqGraphNode{dest: K - 1,
+		weight: 0,
+		index:  0}
+	//Priority queue for all the nodes in graph
+	pq := make(pqGraph, 1)
+	pq[0] = nodeSlice[K-1]
+	heap.Init(&pq)
+
+	visited, visitTime := 0, 0
+
+	for pq.Len() > 0 {
+		node := heap.Pop(&pq).(*pqGraphNode)
+		source, time := node.dest, node.weight
+		visited++
+		visitTime = time
+		for _, edge := range network[source] {
+			dest, delay := edge[0], edge[1]+time
+			newNode := nodeSlice[dest]
+			if newNode == nil {
+				nodeSlice[dest] = &pqGraphNode{dest: dest,
+					weight: delay}
+				heap.Push(&pq, nodeSlice[dest])
+			} else if newNode.weight > delay {
+				newNode.weight = delay
+				pq.update(newNode, delay)
+			}
+		}
+	}
+	if visited == N {
+		return visitTime
+	}
+	return -1
+}
 
 // @lc code=end

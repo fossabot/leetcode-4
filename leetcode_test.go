@@ -701,3 +701,20 @@ func TestReverseString(t *testing.T) {
 		}
 	}
 }
+
+func TestNetworkDelayTime(t *testing.T) {
+	tests := []struct {
+		time     [][]int
+		nodeSize int
+		source   int
+		expected int
+	}{
+		{[][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2, 2},
+	}
+
+	for _, test := range tests {
+		if result := networkDelayTime(test.time, test.nodeSize, test.source); result != test.expected {
+			t.Errorf("networkDelayTime result %v, expected %v\n", result, test.expected)
+		}
+	}
+}

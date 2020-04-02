@@ -46,7 +46,7 @@ import (
  */
 
 func mergeKLists(lists []*ListNode) *ListNode {
-	q := PriorityQueue{}
+	q := pqLinkedList{}
 	for _, list := range lists {
 		if list != nil {
 			heap.Push(&q, list)
@@ -65,41 +65,6 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		solution = solution.Next
 	}
 	return head.Next
-}
-
-// An Item is something we manage in a priority queue.
-type Item struct {
-	content *ListNode // The value of the item; arbitrary.
-	// The index is needed by update and is maintained by the heap.Interface methods.
-	index int // The index of the item in the heap.
-}
-
-// A PriorityQueue implements heap.Interface and holds Items.
-type PriorityQueue []*ListNode
-
-func (pq PriorityQueue) Len() int { return len(pq) }
-
-func (pq PriorityQueue) Less(i, j int) bool {
-	// Get the lowest Node from queue
-	return pq[i].Val < pq[j].Val
-}
-
-func (pq PriorityQueue) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-}
-
-func (pq *PriorityQueue) Push(x interface{}) {
-	node := x.(*ListNode)
-	*pq = append(*pq, node)
-}
-
-func (pq *PriorityQueue) Pop() interface{} {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	old[n-1] = nil // avoid memory leak
-	*pq = old[0 : n-1]
-	return item
 }
 
 // @lc code=end
