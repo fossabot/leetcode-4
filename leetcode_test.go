@@ -5,14 +5,6 @@ import (
 	"testing"
 )
 
-func TestLongestSubstring(t *testing.T) {
-	str := "abc"
-	val := lengthOfLongestSubstring(str)
-	if val != 3 {
-		t.Error("Value not matched, got value ", val)
-	}
-}
-
 func TestFindRedundantConnection(t *testing.T) {
 	input1 := [][]int{{1, 2}, {1, 3}, {2, 3}}
 	expectedResult1 := []int{2, 3}
@@ -49,23 +41,6 @@ func TestThreeSum(t *testing.T) {
 	for _, test := range tests {
 		if got := threeSum(test.input); !reflect.DeepEqual(got, test.want) {
 			t.Errorf("threeSum(%v) = %v, want %v\n", test.input, got, test.want)
-		}
-	}
-}
-
-func TestTwoSum(t *testing.T) {
-	tests := []struct {
-		input []int
-		want  []int
-	}{
-		{[]int{}, []int{}},
-		{[]int{0}, []int{}},
-		{[]int{2, 7, 11, 15}, []int{0, 1}},
-	}
-
-	for _, test := range tests {
-		if got := twoSum(test.input, 9); !reflect.DeepEqual(got, test.want) {
-			t.Errorf("twoSum(%v) = %v, want %v\n", test.input, got, test.want)
 		}
 	}
 }
@@ -215,21 +190,6 @@ func TestLetterCombinations(t *testing.T) {
 	for _, test := range tests {
 		if result := letterCombinations(test.input); !reflect.DeepEqual(test.expected, result) {
 			t.Errorf("letterCombinations(%v) = %v, expected %v\n", test.input, result, test.expected)
-		}
-	}
-}
-
-func TestConstructor(t *testing.T) {
-	tests := []struct {
-		input    int
-		expected LRUCache
-	}{
-		{2, Constructor(2)},
-	}
-
-	for _, test := range tests {
-		if result := Constructor(test.input); result.capacity != test.expected.capacity {
-			t.Errorf("Constructor(%v) = %v, expected %v\n", test.input, result.capacity, test.expected.capacity)
 		}
 	}
 }
