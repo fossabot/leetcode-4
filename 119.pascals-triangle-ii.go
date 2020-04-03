@@ -39,21 +39,36 @@ package leetcode
 
 // @lc code=start
 func getRow(rowIndex int) []int {
-	result := make([][]int, 0)
-	result = append(result, []int{1})
-	for i := 1; i <= rowIndex; i++ {
-		temp := make([]int, 0)
-		for j := 0; j <= i; j++ {
-			val := 0
-			if j == 0 || j == i {
-				val = 1
-			} else {
-				val = result[i-1][j-1] + result[i-1][j]
-			}
-			temp = append(temp, val)
-		}
-		result = append(result, temp)
+
+	// Iterative solution
+	// result := make([][]int, 0)
+	// result = append(result, []int{1})
+	// for i := 1; i <= rowIndex; i++ {
+	// 	temp := make([]int, 0)
+	// 	for j := 0; j <= i; j++ {
+	// 		val := 0
+	// 		if j == 0 || j == i {
+	// 			val = 1
+	// 		} else {
+	// 			val = result[i-1][j-1] + result[i-1][j]
+	// 		}
+	// 		temp = append(temp, val)
+	// 	}
+	// 	result = append(result, temp)
+	// }
+	// return result[rowIndex]
+
+	// Recursive solution
+	if rowIndex == 0 {
+		return []int{1}
 	}
-	return result[rowIndex]
+	pre := getRow(rowIndex - 1)
+	result := make([]int, rowIndex+1)
+	result[0], result[rowIndex] = 1, 1
+	for i := 1; i < rowIndex; i++ {
+		result[i] = pre[i-1] + pre[i]
+	}
+	return result
 }
+
 // @lc code=end
