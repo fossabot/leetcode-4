@@ -48,7 +48,30 @@ func Test_minWindow(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"", "ABC"},
+			want: ""},
+		{
+			name: "Test 2",
+			args: args{"ADOBECODEBANC", ""},
+			want: ""},
+		{
+			name: "Test 3",
+			args: args{"ADOBECODEBANC", "AABC"},
+			want: "ADOBECODEBA"},
+		{
+			name: "Test 4",
+			args: args{"ADOBECODEBANC", "ABC"},
+			want: "BANC"},
+		{
+			name: "Test 5",
+			args: args{"ADOBECODEBANCA", "AABC"},
+			want: "BANCA"},
+		{
+			name: "Test 6",
+			args: args{"a", "aa"},
+			want: ""},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

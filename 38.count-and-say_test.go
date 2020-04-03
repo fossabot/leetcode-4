@@ -72,7 +72,31 @@ func Test_countAndSay(t *testing.T) {
 		args args
 		want string
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{1},
+			want: "1",
+		},
+		{
+			name: "Test 2",
+			args: args{2},
+			want: "11",
+		},
+		{
+			name: "Test 3",
+			args: args{3},
+			want: "21",
+		},
+		{
+			name: "Test 4",
+			args: args{4},
+			want: "1211",
+		},
+		{
+			name: "Test 5",
+			args: args{5},
+			want: "111221",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -60,7 +60,31 @@ func Test_findSubstring(t *testing.T) {
 		args args
 		want []int
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"barfoothefoobarman", []string{"foo", "bar"}},
+			want: []int{0, 9},
+		},
+		{
+			name: "Test 2",
+			args: args{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "word"}},
+			want: []int{},
+		},
+		{
+			name: "Test 3",
+			args: args{"", []string{"word"}},
+			want: []int{},
+		},
+		{
+			name: "Test 4",
+			args: args{"word", []string{}},
+			want: []int{},
+		},
+		{
+			name: "Test 5",
+			args: args{"wordgoodgoodgoodbestword", []string{"word", "good", "best", "good"}},
+			want: []int{8},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

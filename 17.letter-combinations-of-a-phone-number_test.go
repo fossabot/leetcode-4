@@ -51,7 +51,11 @@ func Test_letterCombinations(t *testing.T) {
 		args args
 		want []string
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"23"},
+			want: []string{"ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -63,7 +63,11 @@ func TestConstructor(t *testing.T) {
 		args args
 		want LRUCache
 	}{
-		{"Test1", args{2}, Constructor(2)},
+		{
+			name: "Test1",
+			args: args{2},
+			want: Constructor(2),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -113,3 +117,54 @@ func TestLRUCache_Put(t *testing.T) {
 		})
 	}
 }
+
+// cache := Constructor(2)
+
+// cache.Put(1, 1)
+// cache.Put(2, 2)
+// val := cache.Get(1) // returns 1
+// if val != 1 {
+// 	t.Errorf("Wrong Output. Expected 1, got %v", val)
+// }
+// cache.Put(3, 3)    // evicts key 2
+// val = cache.Get(2) // returns -1 (not found)
+// if val != -1 {
+// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+// }
+// cache.Put(4, 4)    // evicts key 1
+// val = cache.Get(1) // returns -1 (not found)
+// if val != -1 {
+// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+// }
+// val = cache.Get(3) // returns 3
+// if val != 3 {
+// 	t.Errorf("Wrong Output. Expected 3, got %v", val)
+// }
+// val = cache.Get(4) // returns 4
+// if val != 4 {
+// 	t.Errorf("Wrong Output. Expected 4, got %v", val)
+// }
+// cache.Put(2, 1)
+// cache.Put(1, 1)
+// cache.Put(2, 3)
+// cache.Put(4, 1)     // evicts key 1
+// val := cache.Get(1) // returns 1
+// if val != -1 {
+// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+// }
+// val = cache.Get(2) // returns -1 (not found)
+// if val != 3 {
+// 	t.Errorf("Wrong Output. Expected 3, got %v", val)
+// }
+// cache.Put(2, 1)
+// cache.Put(2, 2)
+// val := cache.Get(2)
+// if val != 2 {
+// 	t.Errorf("Wrong Output. Expected 2, got %v", val)
+// }
+// cache.Put(1, 1)
+// cache.Put(4, 1)    // evicts key 1
+// val = cache.Get(2) // returns 1
+// if val != -1 {
+// 	t.Errorf("Wrong Output. Expected -1, got %v", val)
+// }
