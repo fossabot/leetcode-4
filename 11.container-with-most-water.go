@@ -42,20 +42,6 @@ package leetcode
 
 // @lc code=start
 
-func max(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
-}
-
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
 func maxArea(height []int) int {
 	left, right := 0, len(height)-1
 	result := 0
