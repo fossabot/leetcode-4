@@ -25,27 +25,6 @@ func Test_newList(t *testing.T) {
 	}
 }
 
-func Test_equalList(t *testing.T) {
-	type args struct {
-		l1 *ListNode
-		l2 *ListNode
-	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := equalList(tt.args.l1, tt.args.l2); got != tt.want {
-				t.Errorf("equalList() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func Test_printList(t *testing.T) {
 	type args struct {
 		l *ListNode

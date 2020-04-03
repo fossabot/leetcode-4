@@ -29,38 +29,48 @@
  *
  *
  * Input: "()"
- * Output: true
+ * Output:
+ want:true,
+
  *
  *
  * Example 2:
  *
  *
  * Input: "()[]{}"
- * Output: true
+ * Output:
+ want:true,
+
  *
  *
  * Example 3:
  *
  *
  * Input: "(]"
- * Output: false
+ * Output:
+ want:false,
+
  *
  *
  * Example 4:
  *
  *
  * Input: "([)]"
- * Output: false
+ * Output:
+ want:false,
+
  *
  *
  * Example 5:
  *
  *
  * Input: "{[]}"
- * Output: true
+ * Output:
+ want:true,
+
  *
  *
- */
+*/
 
 package leetcode
 
@@ -163,7 +173,36 @@ func Test_isValid(t *testing.T) {
 		args args
 		want bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"()"},
+			want: true,
+		},
+		{
+			name: "Test 2",
+			args: args{"()[]{}"},
+			want: true,
+		},
+		{
+			name: "Test 3",
+			args: args{"(]"},
+			want: false,
+		},
+		{
+			name: "Test 4",
+			args: args{"([)]"},
+			want: false,
+		},
+		{
+			name: "Test 5",
+			args: args{"{[]}"},
+			want: true,
+		},
+		{
+			name: "Test 6",
+			args: args{"["},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

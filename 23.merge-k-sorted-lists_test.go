@@ -46,7 +46,16 @@ func Test_mergeKLists(t *testing.T) {
 		args args
 		want *ListNode
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{[]*ListNode{nil}},
+			want: nil,
+		},
+		{
+			name: "Test 2",
+			args: args{[]*ListNode{newList([]int{1, 4, 5}), newList([]int{1, 3, 4}), newList([]int{2, 6})}},
+			want: newList([]int{1, 1, 2, 3, 4, 4, 5, 6}),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

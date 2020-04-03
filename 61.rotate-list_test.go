@@ -56,7 +56,38 @@ func Test_rotateRight(t *testing.T) {
 		args args
 		want *ListNode
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{
+				head: newList([]int{1, 2, 3, 4, 5}),
+				k:    0,
+			},
+			want: newList([]int{1, 2, 3, 4, 5}),
+		},
+		{
+			name: "Test 2",
+			args: args{
+				head: newList([]int{1, 2, 3, 4, 5}),
+				k:    2,
+			},
+			want: newList([]int{4, 5, 1, 2, 3}),
+		},
+		{
+			name: "Test 3",
+			args: args{
+				head: newList([]int{1, 2, 3, 4, 5}),
+				k:    7,
+			},
+			want: newList([]int{4, 5, 1, 2, 3}),
+		},
+		{
+			name: "Test 4",
+			args: args{
+				head: newList([]int{1, 2, 3, 4, 5}),
+				k:    5,
+			},
+			want: newList([]int{1, 2, 3, 4, 5}),
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

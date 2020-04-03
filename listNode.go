@@ -2,13 +2,7 @@ package leetcode
 
 import "strconv"
 
-/*
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
+// ListNode defines a singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -24,17 +18,6 @@ func newList(vals []int) *ListNode {
 		listNode = listNode.Next
 	}
 	return original.Next
-}
-
-func equalList(l1, l2 *ListNode) bool {
-	for {
-		if l1 == nil && l2 == nil {
-			return true
-		} else if l1 == nil || l2 == nil || l1.Val != l2.Val {
-			return false
-		}
-		l1, l2 = l1.Next, l2.Next
-	}
 }
 
 func printList(l *ListNode) (s string) {

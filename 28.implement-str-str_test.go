@@ -56,7 +56,31 @@ func Test_strStr(t *testing.T) {
 		args args
 		want int
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"hello", "ll"},
+			want: 2,
+		},
+		{
+			name: "Test 2",
+			args: args{"aaaaa", "bba"},
+			want: -1,
+		},
+		{
+			name: "Test 3",
+			args: args{"", "bb"},
+			want: -1,
+		},
+		{
+			name: "Test 4",
+			args: args{"bb", ""},
+			want: 0,
+		},
+		{
+			name: "Test 5",
+			args: args{"mississippi", "issip"},
+			want: 4,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
