@@ -84,11 +84,6 @@ func Test_kthGrammar(t *testing.T) {
 			args: args{4, 5},
 			want: 1,
 		},
-		{
-			name: "Test 5",
-			args: args{5, 5},
-			want: 1,
-		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
