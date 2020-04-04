@@ -60,13 +60,16 @@ func kthGrammar(N int, K int) int {
 		return 0
 	}
 	if K%2 == 0 {
-		pre := kthGrammar(N-1, K/2)
-		if pre == 0 {
-			return 1
-		}
-		return 0
+		return inverse(kthGrammar(N-1, K/2))
 	}
 	return kthGrammar(N-1, (K+1)/2)
+}
+
+func inverse(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return 0
 }
 
 // @lc code=end
