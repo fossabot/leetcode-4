@@ -66,3 +66,24 @@ func Test_generateTrees(t *testing.T) {
 		})
 	}
 }
+
+func Test_generateTreesInRange(t *testing.T) {
+	type args struct {
+		start int
+		end   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []*TreeNode
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := generateTreesInRange(tt.args.start, tt.args.end); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("generateTreesInRange() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
