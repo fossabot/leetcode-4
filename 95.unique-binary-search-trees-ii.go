@@ -53,7 +53,7 @@ package leetcode
  */
 func generateTrees(n int) []*TreeNode {
 	if n == 0 {
-		return nil
+		return []*TreeNode{}
 	}
 	return generateTreesInRange(1, n)
 }
