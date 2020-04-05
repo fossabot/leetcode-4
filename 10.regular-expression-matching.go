@@ -86,12 +86,10 @@
 
 package leetcode
 
-import "regexp"
-
 // @lc code=start
 func isMatch(s string, p string) bool {
-	var regexP = regexp.MustCompile("^" + p + "$")
-	return regexP.MatchString(s)
+	lenS, lenP := len(s), len(p)
+	return lenS == lenP
 }
 
 // @lc code=end

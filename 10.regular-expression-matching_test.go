@@ -98,7 +98,36 @@ func Test_isMatch(t *testing.T) {
 		args args
 		want bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{"aa", "a"},
+			want: false,
+		},
+		{
+			name: "Test 2",
+			args: args{"aa", "a*"},
+			want: true,
+		},
+		{
+			name: "Test 3",
+			args: args{"ab", ".*"},
+			want: true,
+		},
+		{
+			name: "Test 4",
+			args: args{"aab", "c*a*b"},
+			want: true,
+		},
+		{
+			name: "Test 5",
+			args: args{"mississippi", "mississippi"},
+			want: false,
+		},
+		{
+			name: "Test 6",
+			args: args{"", ""},
+			want: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

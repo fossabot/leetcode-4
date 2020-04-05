@@ -5,25 +5,6 @@ import (
 	"testing"
 )
 
-func TestIsMatch(t *testing.T) {
-	tests := []struct {
-		str      string
-		pattern  string
-		expected bool
-	}{
-		{"mississippi", "mis*is*p*.", false},
-		// {"aaaaa", "bba", -1},
-		// {"", "bb", -1},
-		// {"bb", "", 0},
-		// {"mississippi", "issip", 4},
-	}
-
-	for _, test := range tests {
-		if result := isMatch(test.str, test.pattern); test.expected != result {
-			t.Errorf("isMatch(%v, %v) = %v, expected %v\n", test.str, test.pattern, result, test.expected)
-		}
-	}
-}
 func TestRotate(t *testing.T) {
 	tests := []struct {
 		input    [][]int

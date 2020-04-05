@@ -69,6 +69,8 @@ func generateTreesInRange(start, end int) []*TreeNode {
 		rightRes := generateTreesInRange(i+1, end)
 		for _, leftNode := range leftRes {
 			for _, rightNode := range rightRes {
+				// New Treenode with left pointer to leftNode and right pointer
+				// to RightNode and i as value
 				res = append(res, &TreeNode{i, leftNode, rightNode})
 			}
 		}
