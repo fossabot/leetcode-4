@@ -53,9 +53,9 @@ func groupAnagrams(strs []string) [][]string {
 		// Bug: Can't handle character repeat
 		// If array is used, memory usage increased
 		// key := getKey(str)
-		strSlice, found := strMap[key]
+		_, found := strMap[key]
 		if found {
-			strMap[key] = append(strSlice, str)
+			strMap[key] = append(strMap[key], str)
 		} else {
 			// keys = append(keys, key)
 			strMap[key] = []string{str}
