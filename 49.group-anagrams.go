@@ -43,11 +43,7 @@ import "sort"
 func groupAnagrams(strs []string) [][]string {
 	// using string as key
 	strMap := make(map[string][]string)
-	keys := make([]string, 0)
-
-	// Using integer as key
-	// strMap := make(map[int][]string)
-	// keys := make([]int, 0)
+	// keys := make([]string, 0)
 
 	for _, str := range strs {
 		// Using sorted string as key
@@ -61,15 +57,15 @@ func groupAnagrams(strs []string) [][]string {
 		if found {
 			strMap[key] = append(strSlice, str)
 		} else {
-			keys = append(keys, key)
+			// keys = append(keys, key)
 			strMap[key] = []string{str}
 		}
 	}
 
 	result := make([][]string, 0)
 
-	for _, key := range keys {
-		result = append(result, strMap[key])
+	for _, strArray := range strMap {
+		result = append(result, strArray)
 	}
 
 	return result
