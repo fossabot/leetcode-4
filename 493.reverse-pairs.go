@@ -45,15 +45,15 @@ import "sort"
 
 // @lc code=start
 func reversePairs(nums []int) int {
-	return mergeSort(nums, 0, len(nums)-1)
+	return indexedReversePairs(nums, 0, len(nums)-1)
 }
 
-func mergeSort(nums []int, s, e int) int {
+func indexedReversePairs(nums []int, s, e int) int {
 	if s >= e {
 		return 0
 	}
 	mid := s + (e-s)/2
-	cnt := mergeSort(nums, s, mid) + mergeSort(nums, mid+1, e)
+	cnt := indexedReversePairs(nums, s, mid) + indexedReversePairs(nums, mid+1, e)
 	for i, j := s, mid+1; i <= mid; i++ {
 		for j <= e && nums[i] > nums[j]*2 {
 			j++

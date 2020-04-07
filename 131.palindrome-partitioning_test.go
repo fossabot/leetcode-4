@@ -61,3 +61,25 @@ func Test_partition(t *testing.T) {
 		})
 	}
 }
+
+func Test_generatePartition(t *testing.T) {
+	type args struct {
+		s     string
+		start int
+		end   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]string
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := generatePartition(tt.args.s, tt.args.start, tt.args.end); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("generatePartition() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

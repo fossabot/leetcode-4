@@ -41,7 +41,9 @@
 
 package leetcode
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_reversePairs(t *testing.T) {
 	type args struct {
@@ -63,7 +65,7 @@ func Test_reversePairs(t *testing.T) {
 	}
 }
 
-func Test_mergeSort(t *testing.T) {
+func Test_indexedReversePairs(t *testing.T) {
 	type args struct {
 		nums []int
 		s    int
@@ -78,8 +80,8 @@ func Test_mergeSort(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := mergeSort(tt.args.nums, tt.args.s, tt.args.e); got != tt.want {
-				t.Errorf("mergeSort() = %v, want %v", got, tt.want)
+			if got := indexedReversePairs(tt.args.nums, tt.args.s, tt.args.e); got != tt.want {
+				t.Errorf("indexedReversePairs() = %v, want %v", got, tt.want)
 			}
 		})
 	}
