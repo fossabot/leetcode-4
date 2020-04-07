@@ -31,31 +31,10 @@
 
 package leetcode
 
-import "math"
-
 // @lc code=start
 func minCut(s string) int {
-	lenStr := len(s)
-	if lenStr == 0 {
-		return 0
-	}
 
-	dp := make([][2]int, lenStr)
-	minC := math.MaxInt64
-
-	dp[0][0] = 1
-	dp[0][1] = 0
-
-	// for i := 1; i < lenStr; i++ {
-	// 	backIndex := i - dp[i-1][0] - 1
-	// 	if[backIndex] == s[i] {
-
-	// 	}
-	// 	if dp[i][0] < minC {
-	// 		minC = dp[i][0]
-	// 	}
-	// }
-	return minC
+	return 0
 }
 
 // @lc code=end

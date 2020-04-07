@@ -52,3 +52,25 @@ func Test_lexicalOrder(t *testing.T) {
 		})
 	}
 }
+
+func Test_dfs(t *testing.T) {
+	type args struct {
+		st  int
+		n   int
+		res []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := dfs(tt.args.st, tt.args.n, tt.args.res); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("dfs() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
