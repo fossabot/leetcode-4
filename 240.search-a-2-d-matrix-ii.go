@@ -57,9 +57,8 @@ func searchMatrix(matrix [][]int, target int) bool {
 		if row[0] > target {
 			return false
 		}
-		res := binarySearch(row, target, n)
-		if res == true {
-			return res
+		if binarySearch(row, target, n) {
+			return true
 		}
 	}
 	return false
