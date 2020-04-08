@@ -66,6 +66,11 @@ func Test_totalNQueens(t *testing.T) {
 			args: args{10},
 			want: 724,
 		},
+		{
+			name: "Test 3",
+			args: args{14},
+			want: 365596,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
