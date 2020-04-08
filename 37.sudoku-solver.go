@@ -51,49 +51,67 @@ func solveSudoku(board [][]byte) {
 }
 
 func solveSudokuPos(board [][]byte, row, col int) bool {
-	if col == 9 {
-		if row == 8 {
-			return true
-		}
-		row++
-		col = 0
+	solved, row, col := getNextPos(board, row, col)
+	if solved {
+		return solved
 	}
 
-	for ; col < 9; col++ {
-		if board[row][col] != '.' {
-			continue
-		}
-	}
-
-	for i := 1; i <= 9; i++ {
-		if isVal(board, row, col, i) {
-			board[row][col] = byte(i)
+	for i := byte('1'); i <= '9'; i++ {
+		if isValidValue(board, i, row, col) {
+			putValue(board, i, row, col)
 			solved := solveSudokuPos(board, row, col+1)
 			if solved {
 				return solved
 			}
+			removeValue(board, row, col)
 		}
-		board[row][col] = '.'
 	}
 	return false
 }
 
-func isVal(board [][]byte, row, col, val int) bool {
+func getNextPos(board [][]byte, row, col int) (bool, int, int) {
+	for row < 9 {
+		for col < 9 {
+			if board[row][col] == '.' {
+				return false, row, col
+			}
+			col++
+		}
+		row++
+		col = 0
+	}
+	return true, row, col
+}
+
+func removeValue(board [][]byte, row, col int) {
+	board[row][col] = '.'
+}
+
+func putValue(board [][]byte, val byte, row, col int) {
+	board[row][col] = val
+}
+
+func isValidValue(board [][]byte, val byte, row, col int) bool {
+	// Check for value in row
 	for i := 0; i < 9; i++ {
-		if board[row][i] == byte(val) {
+		if board[row][i] == val {
 			return false
 		}
 	}
 
+	// Check for value in column
 	for i := 0; i < 9; i++ {
-		if board[i][col] == byte(val) {
+		if board[i][col] == val {
 			return false
 		}
 	}
 
-	for i := 0; i < (row/3+1)*3; i++ {
-		for j := 0; j < (col/3+1)*3; j++ {
-			if board[i][j] == byte(val) {
+	// Check for value in box
+	rowStart, rowEnd := (row/3)*3, (row/3+1)*3
+	colStart, colEnd := (col/3)*3, (col/3+1)*3
+	for i := rowStart; i < rowEnd; i++ {
+		for j := colStart; j < colEnd; j++ {
+			if board[i][j] == val {
 				return false
 			}
 		}
