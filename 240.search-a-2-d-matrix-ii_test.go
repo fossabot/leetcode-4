@@ -43,7 +43,9 @@
 
 package leetcode
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_searchMatrix(t *testing.T) {
 	type args struct {
@@ -61,6 +63,28 @@ func Test_searchMatrix(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := searchMatrix(tt.args.matrix, tt.args.target); got != tt.want {
 				t.Errorf("searchMatrix() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_binarySearch(t *testing.T) {
+	type args struct {
+		row    []int
+		target int
+		length int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := binarySearch(tt.args.row, tt.args.target, tt.args.length); got != tt.want {
+				t.Errorf("binarySearch() = %v, want %v", got, tt.want)
 			}
 		})
 	}
