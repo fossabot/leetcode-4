@@ -45,7 +45,10 @@
 
 package leetcode
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func Test_totalNQueens(t *testing.T) {
 	type args struct {
@@ -77,6 +80,111 @@ func Test_totalNQueens(t *testing.T) {
 			if got := totalNQueens(tt.args.n); got != tt.want {
 				t.Errorf("totalNQueens() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func Test_makeBoard(t *testing.T) {
+	type args struct {
+		n int
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := makeBoard(tt.args.n); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("makeBoard() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_countSolve(t *testing.T) {
+	type args struct {
+		board [][]bool
+		n     int
+		row   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := countSolve(tt.args.board, tt.args.n, tt.args.row); got != tt.want {
+				t.Errorf("countSolve() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_isSafe(t *testing.T) {
+	type args struct {
+		board [][]bool
+		n     int
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isSafe(tt.args.board, tt.args.n, tt.args.row, tt.args.col); got != tt.want {
+				t.Errorf("isSafe() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_placeQueen(t *testing.T) {
+	type args struct {
+		board [][]bool
+		n     int
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			placeQueen(tt.args.board, tt.args.n, tt.args.row, tt.args.col)
+		})
+	}
+}
+
+func Test_removeQueen(t *testing.T) {
+	type args struct {
+		board [][]bool
+		n     int
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			removeQueen(tt.args.board, tt.args.n, tt.args.row, tt.args.col)
 		})
 	}
 }

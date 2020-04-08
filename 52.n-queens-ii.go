@@ -48,7 +48,7 @@ package leetcode
 // @lc code=start
 func totalNQueens(n int) int {
 	board := makeBoard(n)
-	return backtrack(board, n, 0)
+	return countSolve(board, n, 0)
 }
 
 func makeBoard(n int) [][]bool {
@@ -59,7 +59,7 @@ func makeBoard(n int) [][]bool {
 	return board
 }
 
-func backtrack(board [][]bool, n, row int) int {
+func countSolve(board [][]bool, n, row int) int {
 	count := 0
 	for col := 0; col < n; col++ {
 		if isSafe(board, n, row, col) {
@@ -67,7 +67,7 @@ func backtrack(board [][]bool, n, row int) int {
 			if row == (n - 1) {
 				count++
 			} else {
-				count += backtrack(board, n, row+1)
+				count += countSolve(board, n, row+1)
 			}
 			removeQueen(board, n, row, col)
 		}
