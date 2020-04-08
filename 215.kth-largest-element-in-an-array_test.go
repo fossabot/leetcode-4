@@ -36,7 +36,9 @@
 
 package leetcode
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_findKthLargest(t *testing.T) {
 	type args struct {
@@ -64,6 +66,45 @@ func Test_findKthLargest(t *testing.T) {
 			if got := findKthLargest(tt.args.nums, tt.args.k); got != tt.want {
 				t.Errorf("findKthLargest() = %v, want %v", got, tt.want)
 			}
+		})
+	}
+}
+
+func Test_part(t *testing.T) {
+	type args struct {
+		nums []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := part(tt.args.nums); got != tt.want {
+				t.Errorf("part() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_swap(t *testing.T) {
+	type args struct {
+		nums []int
+		i    int
+		j    int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			swap(tt.args.nums, tt.args.i, tt.args.j)
 		})
 	}
 }
