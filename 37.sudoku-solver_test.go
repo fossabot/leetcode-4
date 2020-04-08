@@ -133,3 +133,96 @@ func Test_isVal(t *testing.T) {
 		})
 	}
 }
+
+func Test_getNextPos(t *testing.T) {
+	type args struct {
+		board [][]byte
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name  string
+		args  args
+		want  bool
+		want1 int
+		want2 int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, got1, got2 := getNextPos(tt.args.board, tt.args.row, tt.args.col)
+			if got != tt.want {
+				t.Errorf("getNextPos() got = %v, want %v", got, tt.want)
+			}
+			if got1 != tt.want1 {
+				t.Errorf("getNextPos() got1 = %v, want %v", got1, tt.want1)
+			}
+			if got2 != tt.want2 {
+				t.Errorf("getNextPos() got2 = %v, want %v", got2, tt.want2)
+			}
+		})
+	}
+}
+
+func Test_removeValue(t *testing.T) {
+	type args struct {
+		board [][]byte
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			removeValue(tt.args.board, tt.args.row, tt.args.col)
+		})
+	}
+}
+
+func Test_putValue(t *testing.T) {
+	type args struct {
+		board [][]byte
+		val   byte
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			putValue(tt.args.board, tt.args.val, tt.args.row, tt.args.col)
+		})
+	}
+}
+
+func Test_isValidValue(t *testing.T) {
+	type args struct {
+		board [][]byte
+		val   byte
+		row   int
+		col   int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isValidValue(tt.args.board, tt.args.val, tt.args.row, tt.args.col); got != tt.want {
+				t.Errorf("isValidValue() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
