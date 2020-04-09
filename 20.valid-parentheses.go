@@ -66,7 +66,7 @@ package leetcode
 
 // @lc code=start
 
-// Stack is a data type for Stack daata structuire
+// Stack is a data type for Stack data structuire
 type (
 	Stack struct {
 		top    *node
