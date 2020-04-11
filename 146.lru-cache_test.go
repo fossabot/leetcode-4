@@ -54,7 +54,7 @@ import (
 	"testing"
 )
 
-func TestConstructor(t *testing.T) {
+func Test_create(t *testing.T) {
 	type args struct {
 		capacity int
 	}

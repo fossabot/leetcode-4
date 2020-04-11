@@ -70,3 +70,46 @@ func Test_searchRange(t *testing.T) {
 		})
 	}
 }
+
+func Test_bSearch(t *testing.T) {
+	type args struct {
+		nums   []int
+		target int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := bSearch(tt.args.nums, tt.args.target); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("bSearch() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_findRange(t *testing.T) {
+	type args struct {
+		nums   []int
+		limits []int
+		target int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := findRange(tt.args.nums, tt.args.limits, tt.args.target); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("findRange() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
