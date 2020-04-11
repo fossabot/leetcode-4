@@ -60,8 +60,8 @@ type LRUCache struct {
 	numElements int
 }
 
-// Constructor creates an object of type LRUCache
-func Constructor(capacity int) LRUCache {
+// create creates an object of type LRUCache
+func create(capacity int) LRUCache {
 	l := new(LRUCache)
 	l.capacity = capacity
 	l.queue = make([]int, 0)

@@ -159,3 +159,66 @@ func Test_checkByte(t *testing.T) {
 		})
 	}
 }
+
+func Test_backspaceCompareIterative(t *testing.T) {
+	type args struct {
+		S string
+		T string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := backspaceCompareIterative(tt.args.S, tt.args.T); got != tt.want {
+				t.Errorf("backspaceCompareIterative() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_nextPos(t *testing.T) {
+	type args struct {
+		S   string
+		pos int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := nextPos(tt.args.S, tt.args.pos); got != tt.want {
+				t.Errorf("nextPos() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_backspaceCompareRecursive(t *testing.T) {
+	type args struct {
+		S string
+		T string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := backspaceCompareRecursive(tt.args.S, tt.args.T); got != tt.want {
+				t.Errorf("backspaceCompareRecursive() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
