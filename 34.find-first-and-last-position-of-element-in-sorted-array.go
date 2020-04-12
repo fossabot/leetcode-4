@@ -66,14 +66,15 @@ func bSearch(nums []int, target int) []int {
 }
 
 func findRange(nums, limits []int, target int) []int {
-	left, right := limits[0], limits[1]
-	mid := (left + right) / 2
+	// left, right := limits[0], limits[1]
+	// mid := (left + right) / 2
 
-	for midL, midR := (left+mid)/2, (mid+right)/2; ; {
-		if midL == target {
-			left = midL
-		}
-	}
+	// for midL, midR := (left+mid)/2, (mid+right)/2; ; {
+	// 	if midL == target {
+	// 		left = midL
+	// 	}
+	// }
+	return limits
 }
 
 // @lc code=end
