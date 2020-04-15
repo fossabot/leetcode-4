@@ -45,12 +45,12 @@ package leetcode
  * }
  */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	l1Stack := sliceFromList(l1)
-	l2Stack := sliceFromList(l2)
+	l1Slice := sliceFromList(l1)
+	l2Slice := sliceFromList(l2)
 
-	l1Len, l2Len := len(l1Stack), len(l2Stack)
+	l1Len, l2Len := len(l1Slice), len(l2Slice)
 	if l1Len < l2Len {
-		l1Stack, l2Stack = l2Stack, l1Stack
+		l1Slice, l2Slice = l2Slice, l1Slice
 		l1Len, l2Len = l2Len, l1Len
 	}
 
@@ -58,11 +58,11 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	var pre *ListNode
 	i := l1Len - 1
 	for j := l2Len - 1; j >= 0; i, j = i-1, j-1 {
-		carry, pre = sumToList(carry, l1Stack[i], l2Stack[j], pre)
+		carry, pre = sumToList(carry, l1Slice[i], l2Slice[j], pre)
 	}
 
 	for ; i >= 0; i-- {
-		carry, pre = sumToList(carry, l1Stack[i], 0, pre)
+		carry, pre = sumToList(carry, l1Slice[i], 0, pre)
 	}
 
 	if carry != 0 {
