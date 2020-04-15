@@ -43,7 +43,7 @@ package leetcode
 // ListNode is a data structure for Linked-List Data type
 // @lc code=start
 
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbersLSBFirst(l1 *ListNode, l2 *ListNode) *ListNode {
 	resultNode := &ListNode{}
 	curNode := resultNode
 	leading := 0
