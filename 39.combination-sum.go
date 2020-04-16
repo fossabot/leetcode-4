@@ -70,11 +70,12 @@ func genCombSum(nums []int, target int) [][]int {
 		} else if num < target {
 			tmp := genCombSum(nums[i:], target-num)
 			for _, sol := range tmp {
-				sol = append([]int{num}, sol...)
+				sol = append(sol, num)
 				solution = append(solution, sol)
 			}
 		} else {
 			solution = append(solution, []int{num})
+			break
 		}
 	}
 	return solution
