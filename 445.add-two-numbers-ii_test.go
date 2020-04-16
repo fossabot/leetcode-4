@@ -61,3 +61,51 @@ func Test_addTwoNumbers(t *testing.T) {
 		})
 	}
 }
+
+func Test_sumToList(t *testing.T) {
+	type args struct {
+		carry int
+		num1  int
+		num2  int
+		pre   *ListNode
+	}
+	tests := []struct {
+		name  string
+		args  args
+		want  int
+		want1 *ListNode
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, got1 := sumToList(tt.args.carry, tt.args.num1, tt.args.num2, tt.args.pre)
+			if got != tt.want {
+				t.Errorf("sumToList() got = %v, want %v", got, tt.want)
+			}
+			if !reflect.DeepEqual(got1, tt.want1) {
+				t.Errorf("sumToList() got1 = %v, want %v", got1, tt.want1)
+			}
+		})
+	}
+}
+
+func Test_sliceFromList(t *testing.T) {
+	type args struct {
+		list *ListNode
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := sliceFromList(tt.args.list); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("sliceFromList() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
