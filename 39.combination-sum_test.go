@@ -54,30 +54,53 @@
 
 package leetcode
 
-import "sort"
+import (
+	"reflect"
+	"testing"
+)
 
-// @lc code=start
-func combinationSum(candidates []int, target int) [][]int {
-	sort.Ints(candidates)
-	return genCombSum(candidates, target)
-}
-
-func genCombSum(nums []int, target int) [][]int {
-	solution := [][]int{}
-	for i, num := range nums {
-		if num > target {
-			break
-		} else if num < target {
-			tmp := genCombSum(nums[i:], target-num)
-			for _, sol := range tmp {
-				sol = append([]int{num}, sol...)
-				solution = append(solution, sol)
-			}
-		} else {
-			solution = append(solution, []int{num})
-		}
+func Test_combinationSum(t *testing.T) {
+	type args struct {
+		candidates []int
+		target     int
 	}
-	return solution
+	tests := []struct {
+		name string
+		args args
+		want [][]int
+	}{
+		{
+			name: "Test 1",
+			args: args{[]int{2, 3, 6, 7}, 7},
+			want: [][]int{{2,2,3},{7}},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := combinationSum(tt.args.candidates, tt.args.target); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("combinationSum() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
 
-// @lc code=end
+func Test_genCombSum(t *testing.T) {
+	type args struct {
+		nums   []int
+		target int
+	}
+	tests := []struct {
+		name string
+		args args
+		want [][]int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := genCombSum(tt.args.nums, tt.args.target); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("genCombSum() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
