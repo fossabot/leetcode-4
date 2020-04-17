@@ -77,15 +77,8 @@ func robBinary(root *TreeNode) (int, int) {
 	leftInc, leftExc := robBinary(root.Left)
 	rightInc, rightExc := robBinary(root.Right)
 	curExc := leftInc + rightInc
-	curInc := maxTmp(leftExc+rightExc+root.Val, curExc)
+	curInc := max(leftExc+rightExc+root.Val, curExc)
 	return curInc, curExc
-}
-
-func maxTmp(x, y int) int {
-	if x > y {
-		return x
-	}
-	return y
 }
 
 // @lc code=end
