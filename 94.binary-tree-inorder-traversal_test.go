@@ -57,3 +57,68 @@ func Test_inorderTraversal(t *testing.T) {
 		})
 	}
 }
+
+func Test_recursiveInOrderTraversal(t *testing.T) {
+	type args struct {
+		root *TreeNode
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := recursiveInOrderTraversal(tt.args.root); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("recursiveInOrderTraversal() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_iterativeInOrderTraversal(t *testing.T) {
+	type args struct {
+		root *TreeNode
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := iterativeInOrderTraversal(tt.args.root); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("iterativeInOrderTraversal() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_stackPop(t *testing.T) {
+	type args struct {
+		stack []*TreeNode
+	}
+	tests := []struct {
+		name  string
+		args  args
+		want  *TreeNode
+		want1 []*TreeNode
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, got1 := stackPop(tt.args.stack)
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("stackPop() got = %v, want %v", got, tt.want)
+			}
+			if !reflect.DeepEqual(got1, tt.want1) {
+				t.Errorf("stackPop() got1 = %v, want %v", got1, tt.want1)
+			}
+		})
+	}
+}
