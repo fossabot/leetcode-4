@@ -43,12 +43,47 @@ package leetcode
  * }
  */
 func inorderTraversal(root *TreeNode) []int {
-	if root == nil {
-		return []int{}
-	}
+	return iterativeInOrderTraversal(root)
+}
+
+func recursiveInOrderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
+	if root == nil {
+		return result
+	}
 	result = append(inorderTraversal(root.Left), root.Val)
 	result = append(result, inorderTraversal(root.Right)...)
 	return result
 }
+
+func iterativeInOrderTraversal(root *TreeNode) []int {
+	result := make([]int, 0)
+	if root == nil {
+		return result
+	}
+	stack := []*TreeNode{root}
+	visited := make(map[*TreeNode]bool)
+	for len(stack) != 0 {
+		var curNode *TreeNode
+		curNode, stack = stackPop(stack)
+		if curNode == nil {
+			continue
+		}
+		yes, _ := visited[curNode]
+		if yes {
+			result = append(result, curNode.Val)
+		} else {
+			visited[curNode] = true
+			stack = append(stack, curNode.Right, curNode, curNode.Left)
+		}
+	}
+	return result
+}
+
+func stackPop(stack []*TreeNode) (*TreeNode, []*TreeNode) {
+	end := len(stack) - 1
+	num := stack[end]
+	return num, stack[:end]
+}
+
 // @lc code=end
