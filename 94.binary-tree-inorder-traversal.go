@@ -58,24 +58,15 @@ func recursiveInOrderTraversal(root *TreeNode) []int {
 
 func iterativeInOrderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
-	if root == nil {
-		return result
-	}
-	stack := []*TreeNode{root}
-	visited := make(map[*TreeNode]bool)
-	for len(stack) != 0 {
-		var curNode *TreeNode
+	stack := []*TreeNode{}
+	for curNode := root; curNode != nil || len(stack) != 0; {
+		for curNode != nil {
+			stack = append(stack, curNode)
+			curNode = curNode.Left
+		}
 		curNode, stack = stackPop(stack)
-		if curNode == nil {
-			continue
-		}
-		yes, _ := visited[curNode]
-		if yes {
-			result = append(result, curNode.Val)
-		} else {
-			visited[curNode] = true
-			stack = append(stack, curNode.Right, curNode, curNode.Left)
-		}
+		result = append(result, curNode.Val)
+		curNode = curNode.Right
 	}
 	return result
 }
