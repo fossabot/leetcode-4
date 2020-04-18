@@ -47,7 +47,7 @@ package leetcode
 import "math"
 
 // @lc code=start
-func maxProfit(prices []int) int {
+func maxProfitI(prices []int) int {
 	profit := 0
 	for i, buy := 0, math.MaxInt64; i < len(prices); i++ {
 		if prices[i] < buy {
