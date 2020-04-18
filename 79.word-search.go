@@ -51,15 +51,10 @@ package leetcode
 // @lc code=start
 func exist(board [][]byte, word string) bool {
 	X, Y := len(board), len(board[0])
-	// wordLen := len(word)
-	// if X == 0 || Y == 0 || wordLen == 0 {
-	// 	return false
-	// }
-	bWord := []byte(word)
 
 	for i := 0; i < X; i++ {
 		for j := 0; j < Y; j++ {
-			if chkExist(board, i, j, X, Y, bWord) {
+			if chkExist(board, word, i, j, X, Y) {
 				return true
 			}
 		}
@@ -68,22 +63,21 @@ func exist(board [][]byte, word string) bool {
 	return false
 }
 
-func chkExist(board [][]byte, x, y, X, Y int,
-	byteArr []byte) bool {
+func chkExist(board [][]byte, word string, x, y, X, Y int) bool {
 	posValid := chkValidPos(board, x, y, X, Y)
-	if len(byteArr) == 1 {
+	if len(word) == 1 {
 		if posValid {
-			return board[x][y] == byteArr[0]
+			return board[x][y] == word[0]
 		}
 	}
 
 	if posValid {
-		if tmp := board[x][y]; board[x][y] == byteArr[0] {
+		if tmp := board[x][y]; board[x][y] == word[0] {
 			board[x][y] = '@'
-			right := chkExist(board, x, y+1, X, Y, byteArr[1:])
-			left := chkExist(board, x, y-1, X, Y, byteArr[1:])
-			down := chkExist(board, x+1, y, X, Y, byteArr[1:])
-			up := chkExist(board, x-1, y, X, Y, byteArr[1:])
+			right := chkExist(board, word[1:], x, y+1, X, Y)
+			left := chkExist(board, word[1:], x, y-1, X, Y)
+			down := chkExist(board, word[1:], x+1, y, X, Y)
+			up := chkExist(board, word[1:], x-1, y, X, Y)
 			if right || left || up || down {
 				return true
 			}

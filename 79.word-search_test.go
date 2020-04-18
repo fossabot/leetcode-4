@@ -107,3 +107,52 @@ func Test_exist(t *testing.T) {
 		})
 	}
 }
+
+func Test_chkExist(t *testing.T) {
+	type args struct {
+		board [][]byte
+		word  string
+		x     int
+		y     int
+		X     int
+		Y     int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := chkExist(tt.args.board, tt.args.word, tt.args.x, tt.args.y, tt.args.X, tt.args.Y); got != tt.want {
+				t.Errorf("chkExist() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_chkValidPos(t *testing.T) {
+	type args struct {
+		board [][]byte
+		x     int
+		y     int
+		X     int
+		Y     int
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := chkValidPos(tt.args.board, tt.args.x, tt.args.y, tt.args.X, tt.args.Y); got != tt.want {
+				t.Errorf("chkValidPos() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
