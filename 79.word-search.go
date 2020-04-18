@@ -51,10 +51,10 @@ package leetcode
 // @lc code=start
 func exist(board [][]byte, word string) bool {
 	X, Y := len(board), len(board[0])
-	wordLen := len(word)
-	if X == 0 || Y == 0 || wordLen == 0 {
-		return false
-	}
+	// wordLen := len(word)
+	// if X == 0 || Y == 0 || wordLen == 0 {
+	// 	return false
+	// }
 	bWord := []byte(word)
 
 	for i := 0; i < X; i++ {
