@@ -55,15 +55,11 @@ func exist(board [][]byte, word string) bool {
 	if X == 0 || Y == 0 || wordLen == 0 {
 		return false
 	}
-	visited := make([][]bool, X)
-	for i := 0; i < X; i++ {
-		visited[i] = make([]bool, Y)
-	}
 	bWord := []byte(word)
 
 	for i := 0; i < X; i++ {
 		for j := 0; j < Y; j++ {
-			if chkExist(board, visited, i, j, X, Y, bWord) {
+			if chkExist(board, i, j, X, Y, bWord) {
 				return true
 			}
 		}
@@ -72,9 +68,9 @@ func exist(board [][]byte, word string) bool {
 	return false
 }
 
-func chkExist(board [][]byte, visited [][]bool, x, y, X, Y int,
+func chkExist(board [][]byte, x, y, X, Y int,
 	byteArr []byte) bool {
-	posValid := chkValidPos(visited, x, y, X, Y)
+	posValid := chkValidPos(board, x, y, X, Y)
 	if len(byteArr) == 1 {
 		if posValid {
 			return board[x][y] == byteArr[0]
@@ -82,27 +78,27 @@ func chkExist(board [][]byte, visited [][]bool, x, y, X, Y int,
 	}
 
 	if posValid {
-		visited[x][y] = true
-		if board[x][y] == byteArr[0] {
-			right := chkExist(board, visited, x, y+1, X, Y, byteArr[1:])
-			left := chkExist(board, visited, x, y-1, X, Y, byteArr[1:])
-			down := chkExist(board, visited, x+1, y, X, Y, byteArr[1:])
-			up := chkExist(board, visited, x-1, y, X, Y, byteArr[1:])
+		if tmp := board[x][y]; board[x][y] == byteArr[0] {
+			board[x][y] = '@'
+			right := chkExist(board, x, y+1, X, Y, byteArr[1:])
+			left := chkExist(board, x, y-1, X, Y, byteArr[1:])
+			down := chkExist(board, x+1, y, X, Y, byteArr[1:])
+			up := chkExist(board, x-1, y, X, Y, byteArr[1:])
 			if right || left || up || down {
 				return true
 			}
+			board[x][y] = tmp
 		}
-		visited[x][y] = false
 	}
 	return false
 }
 
-func chkValidPos(visited [][]bool, x, y, X, Y int) bool {
-	if x >= 0 && x < X && y >= 0 && y < Y {
-		// Visited value is negated because, a pos is valid only if it wasn't visited before
-		return !visited[x][y]
+func chkValidPos(board [][]byte, x, y, X, Y int) bool {
+	if x < 0 || x >= X || y < 0 || y >= Y {
+		return false
 	}
-	return false
+	// If board[x][y]=='@' then this piece is visited
+	return board[x][y] != '@'
 }
 
 // @lc code=end
