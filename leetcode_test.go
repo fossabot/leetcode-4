@@ -164,36 +164,6 @@ func TestLexicalOrder(t *testing.T) {
 	}
 }
 
-func TestExist(t *testing.T) {
-	tests := []struct {
-		inputBoard [][]byte
-		inputWord  string
-		expected   bool
-	}{
-		{[][]byte{
-			{'A', 'B', 'C', 'E'},
-			{'S', 'F', 'C', 'S'},
-			{'A', 'D', 'E', 'E'},
-		}, "ABCCED", true},
-		{[][]byte{
-			{'A', 'B', 'C', 'E'},
-			{'S', 'F', 'C', 'S'},
-			{'A', 'D', 'E', 'E'},
-		}, "SEE", true},
-		{[][]byte{
-			{'A', 'B', 'C', 'E'},
-			{'S', 'F', 'C', 'S'},
-			{'A', 'D', 'E', 'E'},
-		}, "ABCB", false},
-	}
-
-	for _, test := range tests {
-		if result := exist(test.inputBoard, test.inputWord); result != test.expected {
-			t.Errorf("exist(%v,%v) = %v, expected %v", test.inputBoard, test.inputWord, result, test.expected)
-		}
-	}
-}
-
 func TestMinCut(t *testing.T) {
 	tests := []struct {
 		input    string

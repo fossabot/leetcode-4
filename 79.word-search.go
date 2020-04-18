@@ -50,51 +50,59 @@ package leetcode
 
 // @lc code=start
 func exist(board [][]byte, word string) bool {
-	X := len(board)
-	if X == 0 {
+	X, Y := len(board), len(board[0])
+	wordLen := len(word)
+	if X == 0 || Y == 0 || wordLen == 0 {
 		return false
 	}
-	Y, n := len(board[0]), len(word)
-	if Y == 0 || n == 0 {
-		return false
-	}
-
 	visited := make([][]bool, X)
-	for x := 0; x < X; x++ {
-		visited[x] = make([]bool, Y)
+	for i := 0; i < X; i++ {
+		visited[i] = make([]bool, Y)
 	}
+	bWord := []byte(word)
 
-	for x := 0; x < X; x++ {
-		for y := 0; y < Y; y++ {
-			if board[x][y] == word[0] {
-				st := byteStack{}
-				st.Push(board[x][y])
-				for !st.isEmpty(){
-
-				}
+	for i := 0; i < X; i++ {
+		for j := 0; j < Y; j++ {
+			if chkExist(board, visited, i, j, X, Y, bWord) {
+				return true
 			}
 		}
 	}
-	return true
+
+	return false
 }
 
-type byteStack []byte
+func chkExist(board [][]byte, visited [][]bool, x, y, X, Y int,
+	byteArr []byte) bool {
+	posValid := chkValidPos(visited, x, y, X, Y)
+	if len(byteArr) == 1 {
+		if posValid {
+			return board[x][y] == byteArr[0]
+		}
+	}
 
-func (s byteStack) Push(v byte) byteStack {
-	return append(s, v)
+	if posValid {
+		visited[x][y] = true
+		if board[x][y] == byteArr[0] {
+			right := chkExist(board, visited, x, y+1, X, Y, byteArr[1:])
+			left := chkExist(board, visited, x, y-1, X, Y, byteArr[1:])
+			down := chkExist(board, visited, x+1, y, X, Y, byteArr[1:])
+			up := chkExist(board, visited, x-1, y, X, Y, byteArr[1:])
+			if right || left || up || down {
+				return true
+			}
+		}
+		visited[x][y] = false
+	}
+	return false
 }
 
-func (s byteStack) Pop() (byteStack, byte) {
-	l := len(s)
-	return s[:l-1], s[l-1]
-}
-
-func (s byteStack) Len() int {
-	return len(s)
-}
-
-func (s byteStack) isEmpty() bool {
-	return len(s) == 0
+func chkValidPos(visited [][]bool, x, y, X, Y int) bool {
+	if x >= 0 && x < X && y >= 0 && y < Y {
+		// Visited value is negated because, a pos is valid only if it wasn't visited before
+		return !visited[x][y]
+	}
+	return false
 }
 
 // @lc code=end

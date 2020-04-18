@@ -49,7 +49,6 @@
 package leetcode
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -63,89 +62,47 @@ func Test_exist(t *testing.T) {
 		args args
 		want bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "Test 1",
+			args: args{
+				[][]byte{
+					{'A', 'B', 'C', 'E'},
+					{'S', 'F', 'C', 'S'},
+					{'A', 'D', 'E', 'E'},
+				},
+				"ABCCED",
+			},
+			want: true,
+		},
+		{
+			name: "Test 2",
+			args: args{
+				[][]byte{
+					{'A', 'B', 'C', 'E'},
+					{'S', 'F', 'C', 'S'},
+					{'A', 'D', 'E', 'E'},
+				},
+				"SEE",
+			},
+			want: true,
+		},
+		{
+			name: "Test 3",
+			args: args{
+				[][]byte{
+					{'A', 'B', 'C', 'E'},
+					{'S', 'F', 'C', 'S'},
+					{'A', 'D', 'E', 'E'},
+				},
+				"ABCB",
+			},
+			want: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := exist(tt.args.board, tt.args.word); got != tt.want {
 				t.Errorf("exist() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_byteStack_Push(t *testing.T) {
-	type args struct {
-		v byte
-	}
-	tests := []struct {
-		name string
-		s    byteStack
-		args args
-		want byteStack
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.s.Push(tt.args.v); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("byteStack.Push() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_byteStack_Pop(t *testing.T) {
-	tests := []struct {
-		name  string
-		s     byteStack
-		want  byteStack
-		want1 byte
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, got1 := tt.s.Pop()
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("byteStack.Pop() got = %v, want %v", got, tt.want)
-			}
-			if got1 != tt.want1 {
-				t.Errorf("byteStack.Pop() got1 = %v, want %v", got1, tt.want1)
-			}
-		})
-	}
-}
-
-func Test_byteStack_Len(t *testing.T) {
-	tests := []struct {
-		name string
-		s    byteStack
-		want int
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.s.Len(); got != tt.want {
-				t.Errorf("byteStack.Len() = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
-func Test_byteStack_isEmpty(t *testing.T) {
-	tests := []struct {
-		name string
-		s    byteStack
-		want bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.s.isEmpty(); got != tt.want {
-				t.Errorf("byteStack.isEmpty() = %v, want %v", got, tt.want)
 			}
 		})
 	}
