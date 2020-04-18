@@ -59,7 +59,7 @@
 package leetcode
 
 // @lc code=start
-func maxProfit(prices []int) int {
+func maxProfitII(prices []int) int {
 	lenPrice := len(prices)
 	if lenPrice <= 1 {
 		return 0
