@@ -49,14 +49,12 @@ import "math"
 // @lc code=start
 func maxProfitI(prices []int) int {
 	profit := 0
-	for i, buy, sell := 0, math.MaxInt64, 0; i < len(prices); i++ {
+	for i, buy := 0, math.MaxInt64; i < len(prices); i++ {
 		if prices[i] < buy {
 			buy = prices[i]
-			sell = 0
-		} else if prices[i] > sell {
-			sell = prices[i]
-			if (sell - buy) > profit {
-				profit = (sell - buy)
+		} else if prices[i] > buy {
+			if (prices[i] - buy) > profit {
+				profit = (prices[i] - buy)
 			}
 		}
 	}
